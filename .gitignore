@@ -1,0 +1,8 @@
+# midia pesada nao entra no repositorio: o video e servido pelo YouTube.
+# arquivos grandes incham o historico do Git de forma permanente e o GitHub
+# recusa qualquer arquivo acima de 100 MB.
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm

@@ -21,7 +21,7 @@
   .hero{padding:var(--sp-9) 0 0}
   .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--sp-9);align-items:end}
   .hero-copy{padding-bottom:0}
-  .hero-photo{display:block}
+  .hero-photo{display:block;margin-top:0}
   .hero-photo .arch{max-width:500px;aspect-ratio:4/4.7}
   .hero-photo .arch::before{border-radius:999px 999px 0 0}
   .hero .video-m{display:none}

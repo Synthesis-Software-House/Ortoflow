@@ -123,13 +123,20 @@ p+p{margin-top:var(--sp-3)}
 .top-badge svg{color:var(--cyan-deep)}
 
 /* hero */
-.hero{padding:36px 0 56px;background:linear-gradient(180deg,var(--white) 0%,var(--ice) 100%);position:relative;overflow:hidden}
-.hero-photo{display:none}
+.hero{padding:36px 0 0;background:linear-gradient(180deg,var(--white) 0%,var(--ice) 100%);position:relative;overflow:hidden}
+/* a foto fica ancorada na borda inferior do hero: a base navy do arco encontra
+   a faixa de autoridade logo abaixo e as duas viram uma peca so */
+.hero-photo{margin-top:var(--sp-8)}
+.hero-photo .arch{max-width:300px;aspect-ratio:4/4.1;clip-path:inset(-60% -20% 0 -20%)}
+.hero-photo .arch::before{border-radius:var(--r-pill) var(--r-pill) 0 0}
 .watch{display:none}
 
 .video{position:relative;margin-top:var(--sp-6);aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);box-shadow:var(--sh-3)}
 .video .lines{position:absolute;inset:auto 0 0 0;width:100%;height:60%;opacity:.5}
-.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-58%);width:74px;height:74px;border-radius:50%;background:var(--white);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(255,255,255,.14)}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-58%);width:74px;height:74px;border:0;padding:0;border-radius:50%;background:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.play:hover{transform:translate(-50%,-58%) scale(1.06);box-shadow:0 0 0 14px rgba(255,255,255,.2)}
+.play:active{transform:translate(-50%,-58%) scale(.98)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .play::after{content:"";margin-left:6px;border-left:22px solid var(--navy);border-top:13px solid transparent;border-bottom:13px solid transparent}
 .video-cap{position:absolute;left:var(--sp-4);right:var(--sp-4);bottom:var(--sp-3);display:flex;justify-content:space-between;align-items:flex-end;color:var(--white);font-size:13px}
 .video-cap b{font-family:var(--display);font-size:14px;display:block}
