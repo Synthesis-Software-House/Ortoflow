@@ -21,7 +21,27 @@
     fr.focus();
   }
 
+  // a capa e a propria miniatura do video no YouTube. maxresdefault nem sempre
+  // existe; quando falta, o YouTube devolve uma imagem 120x90 de placeholder,
+  // e nesse caso caimos para hqdefault, que existe sempre.
+  function capa(bloco, id){
+    var img = document.createElement('img');
+    img.className = 'cover';
+    img.alt = '';
+    img.loading = 'lazy';
+    img.addEventListener('error', function(){
+      img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+    });
+    img.addEventListener('load', function(){
+      if(img.naturalWidth <= 120) img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+    });
+    img.src = 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg';
+    bloco.insertBefore(img, bloco.firstChild);
+  }
+
   Array.prototype.forEach.call(blocos, function(bloco){
+    var id = bloco.getAttribute('data-yt');
+    if(id) capa(bloco, id);
     var play = bloco.querySelector('.play');
     if(play) play.addEventListener('click', function(){ abrir(bloco); });
   });

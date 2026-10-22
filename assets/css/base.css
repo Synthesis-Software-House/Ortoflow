@@ -36,9 +36,9 @@
   --sp-10:72px;
 
   /* ---- ritmo de pagina ---- */
-  --section-y:64px;           /* padding vertical da secao; desktop sobrescreve */
-  --head-gap:32px;            /* cabecalho da secao -> conteudo */
-  --cta-gap:36px;             /* conteudo -> bloco de CTA */
+  --section-y:36px;           /* padding vertical da secao; desktop sobrescreve */
+  --head-gap:20px;            /* cabecalho da secao -> conteudo */
+  --cta-gap:28px;             /* conteudo -> bloco de CTA */
 
   /* ---- raios ---- */
   --r-xs:12px;
@@ -65,6 +65,9 @@
 
   /* ---- foco visivel: legivel sobre claro e sobre navy ---- */
   --focus-ring:0 0 0 3px var(--white),0 0 0 6px var(--cyan-ink);
+
+  /* altura auto animavel: necessario para o FAQ crescer suavemente */
+  interpolate-size:allow-keywords;
 
   /* ---- tipografia ---- */
   --display:"Montserrat",system-ui,sans-serif;
@@ -99,6 +102,9 @@ h1 em,h2 em{font-style:italic;font-weight:900;color:var(--cyan-ink)}
 p+p{margin-top:var(--sp-3)}
 .dark{background:var(--navy);color:var(--on-navy)}
 .dark h2,.dark h3{color:var(--white)}
+/* cartoes claros dentro de secao escura: o titulo volta ao navy, senao fica
+   branco sobre branco e some */
+.dark .bonus h3,.dark .offer-card h3{color:var(--navy)}
 .dark h2 em{color:var(--cyan)}
 .dark .kicker{color:var(--cyan)}
 .ice{background:var(--ice)}
@@ -124,30 +130,28 @@ p+p{margin-top:var(--sp-3)}
 
 /* hero */
 .hero{padding:36px 0 0;background:linear-gradient(180deg,var(--white) 0%,var(--ice) 100%);position:relative;overflow:hidden}
-/* a foto fica ancorada na borda inferior do hero: a base navy do arco encontra
-   a faixa de autoridade logo abaixo e as duas viram uma peca so */
-.hero-photo{margin-top:var(--sp-8)}
-.hero-photo .arch{max-width:300px;aspect-ratio:4/4.1;clip-path:inset(-60% -20% 0 -20%)}
-.hero-photo .arch::before{border-radius:var(--r-pill) var(--r-pill) 0 0}
+/* no celular tudo empilha na ordem do HTML: titulo, video, texto, botao.
+   o video ao lado do titulo acontece so a partir de 960px */
+.hero-title{margin-bottom:var(--sp-5)}
+.hero-copy{padding-bottom:var(--sp-9)}
 .watch{display:none}
 
-.video{position:relative;margin-top:var(--sp-6);aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);box-shadow:var(--sh-3)}
-.video .lines{position:absolute;inset:auto 0 0 0;width:100%;height:60%;opacity:.5}
-.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-58%);width:74px;height:74px;border:0;padding:0;border-radius:50%;background:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
-.play:hover{transform:translate(-50%,-58%) scale(1.06);box-shadow:0 0 0 14px rgba(255,255,255,.2)}
-.play:active{transform:translate(-50%,-58%) scale(.98)}
+/* a capa e a miniatura do proprio YouTube; o gradiente so aparece enquanto ela carrega.
+   no celular o player sangra ate as bordas da tela para ganhar largura */
+.video{position:relative;margin:var(--sp-6) calc(var(--sp-5) * -1) 0;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);box-shadow:var(--sh-3)}
+.video .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border:0;padding:0;border-radius:50%;background:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.play:hover{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 0 0 14px rgba(255,255,255,.2)}
+.play:active{transform:translate(-50%,-50%) scale(.98)}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .play::after{content:"";margin-left:6px;border-left:22px solid var(--navy);border-top:13px solid transparent;border-bottom:13px solid transparent}
-.video-cap{position:absolute;left:var(--sp-4);right:var(--sp-4);bottom:var(--sp-3);display:flex;justify-content:space-between;align-items:flex-end;color:var(--white);font-size:13px}
-.video-cap b{font-family:var(--display);font-size:14px;display:block}
-.video-cap span{opacity:.8}
-.dur{font-family:var(--display);font-weight:700;font-size:12px;background:rgba(255,255,255,.16);padding:5px var(--sp-2);border-radius:var(--r-pill);white-space:nowrap}
 
 /* authority strip */
 .strip{background:var(--navy);color:var(--white);padding:var(--sp-6) 0}
-.strip ul{list-style:none;display:grid;grid-template-columns:1fr;gap:0}
-.strip li{display:flex;flex-direction:column;padding:var(--sp-3) 0;font-size:14px;color:var(--on-navy-muted);line-height:1.35}
-.strip li+li{border-top:1px solid var(--hair-on-navy-2)}
+.strip ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.strip li{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 var(--sp-2);font-size:12px;color:var(--on-navy-muted);line-height:1.3}
+.strip li+li{border-left:1px solid var(--hair-on-navy-2)}
+.strip li b{font-size:16px}
 .strip li b{font-family:var(--display);font-weight:800;font-style:italic;font-size:20px;color:var(--white);letter-spacing:-.01em}
 
 /* photo on arch */
@@ -155,69 +159,83 @@ p+p{margin-top:var(--sp-3)}
 .arch::before{content:"";position:absolute;left:0;right:0;bottom:0;height:78%;border-radius:var(--r-pill) var(--r-pill) var(--r-md) var(--r-md);background:var(--navy)}
 .arch.light::before{background:var(--ice-2)}
 .arch{clip-path:inset(-60% -20% 0 -20% round 0 0 var(--r-md) var(--r-md))}
-.arch img{position:absolute;left:50%;bottom:-4%;transform:translateX(-50%);height:118%;width:auto;max-width:none}
-.arch .wave{position:absolute;left:-6%;right:-6%;bottom:6%;width:112%;height:auto;z-index:2}
+/* o recorte de cada foto tem a pessoa fora do centro do proprio arquivo. o
+   --nudge corrige isso por foto, em porcentagem da largura da imagem (medida
+   pela caixa do recorte), para que ela fique centrada no arco e nao o arquivo */
+.arch img{position:absolute;left:50%;bottom:-4%;transform:translateX(-50%) translateX(var(--nudge,0));height:118%;width:auto;max-width:none}
 
 /* colega */
-.colega .arch{max-width:300px;margin-bottom:var(--sp-7)}
-.questions{list-style:none;margin:var(--sp-6) 0;display:grid;gap:var(--sp-3)}
-.questions li{display:flex;gap:14px;align-items:flex-start;background:var(--ice);border-radius:var(--r-sm);padding:var(--sp-4);font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.35}
-.questions li span{flex:none;font-style:italic;font-weight:900;font-size:18px;color:var(--cyan-deep);line-height:1.2}
+.colega .arch{max-width:210px;margin-bottom:var(--sp-5)}
+/* lista de perguntas: sem caixa nem raio, que davam aparencia de botao.
+   o "?" fica pendurado na margem e o filete separa uma pergunta da outra */
+.questions{list-style:none;margin:var(--sp-5) 0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-5);gap:0;border-top:1px solid var(--line)}
+.questions li{display:flex;gap:var(--sp-2);align-items:baseline;padding:var(--sp-3) 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);line-height:1.3}
+.questions li:nth-last-child(-n+2){border-bottom:0}
+.questions li span{flex:none;width:14px;font-style:italic;font-weight:900;font-size:18px;color:var(--cyan-deep);line-height:1.2}
 .sign{margin-top:var(--sp-5);font-family:var(--display);font-weight:700;font-style:italic;color:var(--navy)}
 .sign small{display:block;font-family:var(--text);font-style:normal;font-weight:600;font-size:14px;color:var(--muted)}
 
 /* method */
-.steps{list-style:none;margin-top:var(--head-gap);display:grid;gap:var(--sp-3);position:relative}
-.step{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-6);box-shadow:var(--sh-1);position:relative}
-.step-n{font-family:var(--display);font-style:italic;font-weight:900;font-size:40px;line-height:1;color:var(--cyan);letter-spacing:-.04em}
+/* carrossel: a rolagem e o swipe sao nativos. sem JS continua uma lista
+   rolavel na horizontal, com todos os 4 passos acessiveis pelo dedo */
+.carousel{position:relative;margin-top:var(--head-gap)}
+.steps{list-style:none;margin:0;display:flex;gap:var(--sp-3);overflow-x:auto;overscroll-behavior-x:contain;
+       scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:var(--sp-1)}
+.steps::-webkit-scrollbar{display:none}
+.step{flex:0 0 100%;scroll-snap-align:start}
+.carousel-nav{display:flex;align-items:center;justify-content:center;gap:var(--sp-4);margin-top:var(--sp-5)}
+.carousel-nav[hidden]{display:none}
+.car-seta{width:42px;height:42px;flex:none;border:1px solid var(--line);border-radius:50%;background:var(--white);
+          color:var(--navy);display:grid;place-items:center;cursor:pointer;
+          transition:background var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),opacity var(--t-fast) var(--ease)}
+.car-seta:disabled{opacity:.35;cursor:default}
+.car-bolinhas{display:flex;gap:var(--sp-2);align-items:center}
+.car-bolinha{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--line);cursor:pointer;
+             transition:background var(--t-fast) var(--ease),width var(--t-fast) var(--ease)}
+.car-bolinha.ativo{width:24px;border-radius:var(--r-pill);background:var(--cyan-deep)}
+.step{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-5);box-shadow:var(--sh-1);position:relative}
+.step-n{font-family:var(--display);font-style:italic;font-weight:900;font-size:32px;line-height:1;color:var(--cyan);letter-spacing:-.04em}
 .step-tag{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:var(--sp-2) 0 var(--sp-1)}
 .step ul{list-style:none;margin-top:var(--sp-3);display:grid;gap:var(--sp-2)}
-.step li{font-size:15px;color:var(--muted);padding-left:var(--sp-4);position:relative;line-height:1.45}
-.step li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;border:2px solid var(--cyan)}
-.motto{margin-top:var(--sp-8);text-align:center;font-family:var(--display);font-weight:800;font-size:22px;line-height:1.3;color:var(--navy);letter-spacing:-.02em}
+/* marcador alinhado por flex, nao por posicao absoluta com deslocamento fixo:
+   o calc centra o circulo na primeira linha em qualquer corpo de texto, e a
+   linha que quebra passa a alinhar pelo texto, nao pelo marcador */
+.step li{display:flex;gap:var(--sp-2);font-size:15px;color:var(--muted);line-height:1.5}
+.step li::before{content:"";flex:none;width:7px;height:7px;margin-top:calc((1.5em - 11px) / 2);border-radius:50%;border:2px solid var(--cyan)}
+.motto{margin-top:var(--sp-6);text-align:center;font-family:var(--display);font-weight:800;font-size:22px;line-height:1.3;color:var(--navy);letter-spacing:-.02em}
 .motto em{display:block;font-style:italic;font-weight:900;color:var(--cyan-deep)}
 
 /* benefits */
-.groups{margin-top:var(--head-gap);display:grid;gap:var(--sp-6)}
+.groups{margin-top:var(--head-gap);display:grid;gap:var(--sp-5)}
 .group{border-top:3px solid var(--navy);padding-top:var(--sp-4)}
 .group h3{display:flex;align-items:baseline;gap:var(--sp-2)}
 .group h3 small{font-style:italic;font-weight:900;color:var(--cyan-deep);font-size:14px}
-.ticks{list-style:none;margin-top:var(--sp-3);display:grid;gap:var(--sp-3)}
+.ticks{list-style:none;margin-top:var(--sp-2);display:grid;gap:var(--sp-2)}
 .ticks li{display:flex;gap:var(--sp-3);font-size:16px;line-height:1.5}
 .ticks li svg{flex:none;margin-top:3px;color:var(--cyan-deep)}
 .ticks li b{color:var(--navy)}
 
 /* audience */
-.who{margin-top:var(--head-gap);display:grid;gap:var(--sp-3)}
-.who-item{display:flex;gap:var(--sp-4);align-items:center;background:var(--white);border-radius:var(--r-md);padding:var(--sp-5);border:1px solid var(--line);box-shadow:var(--sh-1)}
-.who-item .ix{flex:none;width:44px;height:44px;font-size:17px;border-radius:50%;background:var(--navy);color:var(--white);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-style:italic}
+.who{margin-top:var(--head-gap);display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
+.who-item{display:flex;flex-direction:column;gap:var(--sp-2);align-items:flex-start;background:var(--white);border-radius:var(--r-md);padding:var(--sp-4);border:1px solid var(--line);box-shadow:var(--sh-1)}
+.who-item:last-child{grid-column:1 / -1}
+.who-item p{font-size:14.5px}
+.who-item .ix{flex:none;width:34px;height:34px;font-size:15px;border-radius:50%;background:var(--navy);color:var(--white);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-style:italic}
 .who-item p{font-size:16px;line-height:1.45;color:var(--ink)}
 .who-item p b{color:var(--navy);font-family:var(--display)}
-.note{margin-top:var(--sp-6);font-size:15px;color:var(--muted);padding:var(--sp-3) var(--sp-4);border-left:3px solid var(--cyan);background:rgba(255,255,255,.6);border-radius:0 var(--r-xs) var(--r-xs) 0}
-.closing-line{margin-top:var(--sp-6);font-family:var(--display);font-weight:800;font-style:italic;font-size:20px;color:var(--navy);line-height:1.35}
 
-/* how it works */
-.timeline{list-style:none;margin-top:var(--head-gap);display:grid;gap:0;counter-reset:t}
-.timeline li{position:relative;padding:0 0 var(--sp-6) 58px;counter-increment:t}
-.timeline li::before{content:counter(t);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;background:var(--white);color:var(--navy);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-style:italic;font-size:17px}
-.timeline li::after{content:"";position:absolute;left:19px;top:44px;bottom:var(--sp-1);width:2px;background:var(--rule-on-navy)}
-.timeline li:last-child::after{display:none}
-.timeline h3{font-size:17px;margin-bottom:var(--sp-1)}
-.timeline p{font-size:15px;color:var(--on-navy-muted)}
-.big-quote{margin-top:var(--sp-6);border-radius:var(--r-lg);background:var(--navy-deep);padding:var(--sp-7) var(--sp-6);position:relative;overflow:hidden}
-.big-quote p{font-family:var(--display);font-weight:800;font-size:24px;line-height:1.25;color:var(--white);letter-spacing:-.02em;position:relative;z-index:1}
-.big-quote p em{display:block;margin-top:var(--sp-3);font-style:italic;font-weight:900;color:var(--cyan)}
-.big-quote svg{position:absolute;right:-30px;bottom:-10px;width:260px;opacity:.35}
 
 /* author */
-.author .arch{margin-bottom:var(--sp-7)}
-.creds{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-6)}
-.creds span{font-family:var(--display);font-weight:700;font-size:13px;color:var(--navy);background:var(--ice);padding:var(--sp-2) var(--sp-3);border-radius:var(--r-pill)}
+.author .arch{max-width:210px;margin-bottom:var(--sp-5)}
 .author-name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--cyan-deep);letter-spacing:.02em;margin-bottom:var(--sp-1)}
 
 /* bonuses */
+.bonus-block{margin-top:var(--sp-8);padding-top:var(--sp-8);border-top:1px solid var(--hair-on-navy)}
+.bonus-head .kicker{color:var(--cyan)}
+.bonus-head h2{color:var(--white)}
+.bonus-head h2 em{color:var(--cyan)}
 .bonuses{margin-top:var(--head-gap);display:grid;gap:var(--sp-3)}
-.bonus{background:var(--white);border-radius:var(--r-md);padding:var(--sp-6);border:1px solid var(--line);box-shadow:var(--sh-1);position:relative;overflow:hidden}
+.bonus{background:var(--white);border-radius:var(--r-md);padding:var(--sp-5);border:1px solid var(--line);box-shadow:var(--sh-1);position:relative;overflow:hidden}
 .bonus::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:var(--ice)}
 .bonus-top{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);position:relative;z-index:1}
 .bonus-n{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--navy);padding:6px var(--sp-3);border-radius:var(--r-pill)}
@@ -250,17 +268,26 @@ p+p{margin-top:var(--sp-3)}
 
 /* faq */
 .faq{margin-top:var(--head-gap);display:grid;gap:var(--sp-2)}
-.faq details{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--white);overflow:hidden}
-.faq details[open]{border-color:var(--navy)}
+.faq details{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--white);overflow:hidden;transition:border-color var(--t-mid) var(--ease),box-shadow var(--t-mid) var(--ease)}
+.faq details[open]{border-color:var(--navy);box-shadow:var(--sh-2)}
 .faq summary{list-style:none;cursor:pointer;padding:var(--sp-4) 54px var(--sp-4) var(--sp-4);position:relative;font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy);line-height:1.35}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";position:absolute;right:18px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:var(--ice) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 1v10M1 6h10' stroke='%230D2B6B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/10px no-repeat;transition:transform var(--t-mid) var(--ease)}
+.faq summary::after{content:"";position:absolute;right:18px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:var(--ice) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 1v10M1 6h10' stroke='%230D2B6B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/10px no-repeat;transition:transform var(--t-mid) var(--ease),background-color var(--t-mid) var(--ease)}
 .faq details[open] summary::after{transform:rotate(45deg);background-color:var(--cyan)}
+@media (hover:hover){.faq summary:hover{background:var(--ice)}}
+
+/* abertura animada. duas camadas: ::details-content faz o card crescer onde o
+   navegador suporta, e a animacao do paragrafo roda em qualquer navegador.
+   onde nada disso existe, o card abre na hora, como sempre abriu. */
+.faq details::details-content{block-size:0;overflow:hidden;transition:block-size var(--t-mid) var(--ease),content-visibility var(--t-mid) allow-discrete}
+.faq details[open]::details-content{block-size:auto}
+.faq details[open] p{animation:faq-abre .34s var(--ease) both}
+@keyframes faq-abre{from{opacity:0;transform:translateY(-8px)}}
 .faq details p{padding:0 var(--sp-4) var(--sp-4);font-size:15.5px;color:var(--muted)}
 
 /* final */
 .final{position:relative;overflow:hidden}
-.final .arch{max-width:300px;margin-bottom:var(--sp-7)}
+.final .arch{max-width:210px;margin-bottom:var(--sp-5)}
 
 /* footer */
 footer{border-top:1px solid var(--line);padding:var(--sp-7) 0 110px;font-size:13px;color:var(--muted)}
@@ -268,6 +295,12 @@ footer .logo{width:120px;margin-bottom:var(--sp-3)}
 footer .legal{display:flex;gap:var(--sp-4);margin:var(--sp-3) 0}
 footer a{color:var(--navy);font-weight:700;text-decoration:none}
 footer .disc{max-width:640px;line-height:1.55}
+
+/* entrada ao rolar. quem esconde e o reveal.js, acrescentando .js-reveal no
+   <html> e data-reveal nos elementos. sem JS, nada fica invisivel. */
+.js-reveal [data-reveal]{opacity:0;transform:translateY(34px)}
+.js-reveal [data-reveal].visivel{opacity:1;transform:none;
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
 
 /* sticky mobile bar */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--white);border-top:1px solid var(--line);box-shadow:var(--sh-bar);padding:var(--sp-2) var(--sp-4) calc(var(--sp-2) + env(safe-area-inset-bottom));display:flex;align-items:center;gap:var(--sp-3);transform:translateY(110%);transition:transform var(--t-mid) var(--ease)}
