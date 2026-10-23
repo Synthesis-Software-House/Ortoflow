@@ -159,8 +159,10 @@ p+p{margin-top:var(--sp-3)}
 
 /* ---- player ---- */
 /* antes do play a capa e a miniatura do proprio YouTube; o gradiente so aparece
-   enquanto ela carrega. no celular o player sangra ate as bordas da tela */
-.video{position:relative;margin:var(--sp-6) calc(var(--sp-5) * -1) 0;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);box-shadow:var(--sh-3);isolation:isolate}
+   enquanto ela carrega. o player fica dentro de uma moldura branca com borda,
+   que respeita a margem lateral da pagina em vez de encostar na tela */
+.hero-video{margin-top:var(--sp-6);padding:var(--sp-2);background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-3)}
+.video{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:var(--r-sm);background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);isolation:isolate}
 .video .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:opacity var(--t-mid) var(--ease)}
 .play{position:absolute;left:50%;top:50%;z-index:4;transform:translate(-50%,-50%);width:74px;height:74px;border:0;padding:0;border-radius:50%;background:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease),opacity var(--t-mid) var(--ease)}
 .play:hover{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 0 0 14px rgba(255,255,255,.2)}

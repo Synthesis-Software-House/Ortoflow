@@ -43,12 +43,10 @@
   .hero{padding:var(--sp-9) 0 var(--sp-10)}
   .hero-grid{display:block;text-align:center}
   .hero-title{max-width:20ch;margin:0 auto var(--sp-7)}
-  .hero-video{margin-bottom:var(--sp-7)}
+  .hero-video{max-width:906px;margin:0 auto var(--sp-7);padding:var(--sp-3);border-radius:var(--r-xl)}
   .hero-copy{max-width:68ch;margin:0 auto;padding-bottom:0}
-  .hero .video{max-width:880px;margin:0 auto}
   /* o CTA e um flex de largura fixa: inline-flex para o text-align centrar */
   .hero .cta{display:inline-flex}
-  .video{margin-left:0;margin-right:0;border-radius:var(--r-md)}
   .vp-barra{padding:var(--sp-8) var(--sp-3) var(--sp-2)}
 
   .strip{padding:var(--sp-7) 0}
