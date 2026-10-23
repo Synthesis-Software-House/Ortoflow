@@ -1,40 +1,55 @@
 /* ---------- desktop ---------- */
 @media (min-width:960px){
-  :root{--section-y:56px;--head-gap:32px;--cta-gap:32px}
+  :root{--section-y:72px;--head-gap:36px;--cta-gap:36px}
   body{font-size:18px}
   .wrap{padding:0 var(--sp-8)}
-  h1{font-size:52px;line-height:1.08}
+  h1{font-size:50px;line-height:1.08}
   h2{font-size:40px;line-height:1.12}
   h3{font-size:20px}
   .lead{font-size:20px}
-  .cta{width:auto;min-width:380px;font-size:16px;min-height:64px;padding:18px 34px}
+  .cta{width:auto;min-width:360px;font-size:17px;min-height:62px;padding:18px 34px}
   .cta-note{text-align:left}
   .center{text-align:center}
   .center .cta-note{text-align:center}
   .center .kicker{justify-content:center}
   .narrow{max-width:760px;margin-left:auto;margin-right:auto}
 
-  .logo{width:156px}
-  .top{padding:var(--sp-4) 0}
-  .top-badge{font-size:13px}
+  /* menu fixo e translucido. ao rolar (.rolou, do header.js) ele baixa um
+     pouco e ganha filete e sombra para se separar do conteudo */
+  .top{position:sticky;top:0;padding:var(--sp-4) 0;background:rgba(255,255,255,.86);
+       -webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);
+       border-bottom:1px solid transparent;
+       transition:padding var(--t-mid) var(--ease),box-shadow var(--t-mid) var(--ease),border-color var(--t-mid) var(--ease)}
+  .top.rolou{padding:var(--sp-2) 0;border-bottom-color:var(--line);box-shadow:0 10px 24px -20px rgba(8,28,74,.45)}
+  .logo{width:150px;transition:width var(--t-mid) var(--ease)}
+  .top.rolou .logo{width:128px}
+  /* o traco de caneta cresce sob o link no hover e fica no da secao atual */
+  .top-nav{display:flex;gap:var(--sp-7);margin-left:auto}
+  .top-nav a{padding:var(--sp-2) 0;font-family:var(--display);font-weight:700;font-size:14px;color:var(--muted);text-decoration:none;
+             background:var(--rabisco) left calc(100% - 2px)/0 6px no-repeat;
+             transition:color var(--t-fast) var(--ease),background-size var(--t-mid) var(--ease)}
+  .top-nav a:hover,.top-nav a[aria-current]{color:var(--navy);background-size:100% 6px}
+  /* no desktop o atalho vira o botao do menu: navy, para nao competir com o
+     ciano dos CTAs da pagina */
+  .top-cta{margin-left:var(--sp-7);padding:10px var(--sp-5);border-radius:var(--r-pill);background:var(--navy);color:var(--white);
+           transition:background-color var(--t-fast) var(--ease)}
+  .top-cta:hover{background:var(--navy-lift)}
+  .top-cta:focus-visible{border-radius:var(--r-pill)}
+  .top-cta .curto{display:none}
+  .top-cta .longo{display:inline}
 
-  /* empilhado: titulo, video, texto e botao. o titulo ocupa a largura inteira
-     e cai de 6 para 3 linhas; o texto fica preso a uma medida legivel */
+  /* empilhado: titulo, video, texto e botao. o titulo ocupa a largura
+     inteira e cai para 3 linhas; o texto fica preso a uma medida legivel */
   .hero{padding:var(--sp-9) 0 var(--sp-10)}
   .hero-grid{display:block;text-align:center}
-  .hero-title{margin-bottom:var(--sp-7)}
+  .hero-title{max-width:20ch;margin:0 auto var(--sp-7)}
   .hero-video{margin-bottom:var(--sp-7)}
   .hero-copy{max-width:68ch;margin:0 auto;padding-bottom:0}
   .hero .video{max-width:880px;margin:0 auto}
   /* o CTA e um flex de largura fixa: inline-flex para o text-align centrar */
   .hero .cta{display:inline-flex}
-  .hero .cta-note{text-align:center}
-
-  /* o video agora vive no hero; a secao .watch repetiria o mesmo player */
-  .watch{display:none}
   .video{margin-left:0;margin-right:0;border-radius:var(--r-md)}
-  .watch .video{max-width:none;margin:0 auto;transform:translateY(-1px)}
-  .watch .head{padding-top:var(--sp-10);margin-bottom:var(--sp-7)}
+  .vp-barra{padding:var(--sp-8) var(--sp-3) var(--sp-2)}
 
   .strip{padding:var(--sp-7) 0}
   .strip li{padding:var(--sp-1) var(--sp-4);font-size:14px}
@@ -42,11 +57,10 @@
   .strip li b{font-size:24px}
 
   .split{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--sp-10);align-items:center}
-  .split.rev{grid-template-columns:1.15fr .85fr}
   .colega .arch,.author .arch,.final .arch{max-width:380px;margin-bottom:0}
-  .questions{column-gap:var(--sp-8)}
+  .questions{gap:0 var(--sp-8)}
   .questions li{font-size:16px;padding:var(--sp-4) 0}
-  .questions li:nth-last-child(-n+2){border-bottom:0}
+  .sign .hand{font-size:38px}
 
   .steps{gap:var(--sp-4)}
   .step{flex-basis:calc((100% - 2 * var(--sp-4)) / 3);padding:var(--sp-6)}
@@ -54,7 +68,15 @@
   .motto{font-size:30px;margin-top:var(--sp-9)}
   .motto em{display:inline}
 
-  .groups{grid-template-columns:repeat(3,1fr);gap:var(--sp-8);margin-top:var(--head-gap)}
+  /* duas colunas, com os rotulos em cima */
+  .shift-head,.shift li{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-8);align-items:center}
+  .shift-head,.shift{max-width:900px;margin-left:auto;margin-right:auto}
+  .shift-head{margin-top:var(--head-gap);padding-bottom:var(--sp-3);font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .shift-head span+span{color:var(--cyan-deep)}
+  .shift{margin-top:0}
+  .shift li{padding:var(--sp-5) 0}
+  .shift .de{font-size:17px}
+  .shift .para{margin-top:0;font-size:18px}
   .benefits .cta-block{text-align:center}
   .benefits .cta-block .cta-note{text-align:center}
   .benefits .cta{display:inline-flex}
@@ -62,21 +84,20 @@
   .who{grid-template-columns:repeat(3,1fr);gap:var(--sp-4)}
   .who-item{gap:var(--sp-3);padding:var(--sp-5)}
   .who-item:last-child{grid-column:auto}
-  .who-item p{font-size:16px}
   .who-item .ix{width:44px;height:44px;font-size:17px}
+  .not-for{max-width:760px;margin:var(--sp-7) auto 0;display:flex;align-items:baseline;gap:var(--sp-5)}
+  .not-for-title{flex:none}
+  .not-for ul{margin-top:0}
 
+  .bonuses{grid-template-columns:repeat(3,1fr);gap:var(--sp-5)}
+  .bonus{padding:var(--sp-6)}
 
-  .bonuses{grid-template-columns:repeat(3,1fr);gap:var(--sp-5);margin-top:var(--head-gap)}
-  .bonus-block{margin-top:var(--sp-10);padding-top:var(--sp-9)}
-  .bonus-cta{text-align:center}
-  .bonus-cta .cta{display:inline-flex}
-
+  /* copia e garantia na coluna da esquerda, cartao de preco na direita */
   .offer-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:'copy card' 'guar card';column-gap:var(--sp-9);align-items:center}
-  .offer-grid>div:first-child{grid-area:copy;align-self:end}
-  .offer-card{grid-area:card}
+  .offer-copy{grid-area:copy;align-self:end}
+  .offer-card{grid-area:card;margin-top:0;padding:var(--sp-8) var(--sp-8) var(--sp-7)}
   .offer-grid .guarantee{grid-area:guar;align-self:start}
-  .offer-card{margin-top:0;padding:var(--sp-8) var(--sp-8) var(--sp-7)}
-  .offer-card .cta{width:100%;min-width:0;font-size:14px;letter-spacing:.02em;padding:var(--sp-4) var(--sp-6);white-space:nowrap}
+  .offer-card .cta{width:100%;min-width:0}
 
   .faq{max-width:none;margin:var(--head-gap) 0 0;grid-template-columns:1fr 1fr;gap:var(--sp-3)}
   .faq details{align-self:start}
@@ -89,9 +110,8 @@
 /* ---------- tablet: 2 cartoes por vez no carrossel ---------- */
 @media (min-width:640px) and (max-width:959.98px){
   .step{flex-basis:calc((100% - var(--sp-3)) / 2)}
-  .groups,.who,.bonuses{grid-template-columns:1fr 1fr}
-  .questions{grid-template-columns:1fr 1fr;column-gap:var(--sp-7)}
-  .questions li:nth-last-child(-n+2){border-bottom:0}
+  .who,.bonuses{grid-template-columns:1fr 1fr}
+  .questions{gap:0 var(--sp-7)}
   .faq{grid-template-columns:1fr 1fr;gap:var(--sp-3)}
   .faq details{align-self:start}
 }

@@ -5,9 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OrtoFlow — Fluxo em Ortodontia</title>
 <meta name="description" content="Um método prático para ortodontistas organizarem o fluxo de atendimento por convênios. Turma de lançamento com 30 dias de acompanhamento.">
+<meta name="theme-color" content="#0D2B6B">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="canonical" href="https://synthesis-software-house.github.io/Ortoflow/">
+<!-- previa do link no WhatsApp, Instagram e afins -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="OrtoFlow">
+<meta property="og:title" content="OrtoFlow — Fluxo em Ortodontia">
+<meta property="og:description" content="Ortodontista, atenda convênios com um fluxo organizado, sem precisar descobrir tudo sozinho. Com a Dra. Valéria Mattos.">
+<meta property="og:url" content="https://synthesis-software-house.github.io/Ortoflow/">
+<meta property="og:image" content="https://synthesis-software-house.github.io/Ortoflow/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="OrtoFlow, com a Dra. Valéria Mattos">
+<meta name="twitter:card" content="summary_large_image">
+<!-- a capa do video e o maior elemento da primeira tela: pedir cedo -->
+<link rel="preconnect" href="https://i.ytimg.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800;1,900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:ital,wght@0,700;0,800;1,800;1,900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/desktop.css">
 </head>
@@ -17,38 +34,55 @@
   <symbol id="check" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="shield" viewBox="0 0 20 20"><path d="M10 2l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 10l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="bolt" viewBox="0 0 20 20"><path d="M11 2L4 11.5h5L8 18l7-9.5h-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="x" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 7l6 6M13 7l-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
 <!-- topo -->
-<header class="top">
+<header class="top" id="topo">
   <div class="wrap">
-    <span class="logo" role="img" aria-label="OrtoFlow — Fluxo em Ortodontia"></span>
+    <a class="top-marca" href="#inicio"><img class="logo" src="assets/logo-ortoflow.webp" width="537" height="178" alt="OrtoFlow — Fluxo em Ortodontia, voltar ao início"></a>
+    <nav class="top-nav" aria-label="Seções da página">
+      <a href="#metodo">O método</a>
+      <a href="#para-quem">Para quem é</a>
+      <a href="#valeria">Dra. Valéria</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="top-cta" href="#oferta"><span class="curto">Ver a oferta</span><span class="longo">Quero começar</span><svg width="16" height="16" aria-hidden="true"><use href="#arrow"/></svg></a>
   </div>
 </header>
+
+<main>
 
 <!-- 1. primeira dobra -->
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
-    <h1 class="hero-title">Ortodontista, comece a atender convênios com um <em>fluxo organizado</em>, sem precisar descobrir tudo sozinho.</h1>
+    <h1 class="hero-title">Ortodontista, atenda convênios com um <em>fluxo organizado</em>, sem precisar descobrir tudo sozinho.</h1>
 
     <div class="hero-video">
+      <!-- para tirar 100% da marca do YouTube: hospede o MP4 fora do repositorio
+           (o .gitignore barra .mp4; use Panda Video, Bunny, Cloudflare R2...) e
+           acrescente data-mp4="https://endereco-completo/do/video.mp4" aqui -->
       <div class="video" data-yt="FEjmLT6Ht1w">
+        <img class="cover" src="https://i.ytimg.com/vi/FEjmLT6Ht1w/maxresdefault.jpg" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
         <button class="play" type="button" aria-label="Assistir ao vídeo de apresentação com a Dra. Valéria"></button>
       </div>
     </div>
 
     <div class="hero-copy">
-      <p class="lead">Quer começar a trabalhar com convênios ou já começou, mas ainda perde tempo com documentos, etapas e plataformas? O OrtoFlow mostra um caminho claro para organizar seus atendimentos e colocar o método em prática desde as primeiras aulas — com 30 dias de acompanhamento e troca entre colegas.</p>
+      <p class="lead">Quer começar a atender convênios — ou já começou, mas ainda perde tempo com documentos, etapas e plataformas? O OrtoFlow mostra um caminho claro para organizar seus atendimentos e aplicar o método desde as primeiras aulas, com 30 dias de acompanhamento entre colegas.</p>
 
       <div class="cta-block">
-        <a class="cta" href="#oferta">Quero começar com o OrtoFlow <svg width="18" height="18"><use href="#arrow"/></svg></a>
-        <p class="cta-note">Condição especial de lançamento: <b>R$ 97,90</b> · Garantia de 7 dias</p>
+        <a class="cta" href="#oferta">Quero começar com o OrtoFlow <svg width="18" height="18" aria-hidden="true"><use href="#arrow"/></svg></a>
+        <ul class="trust">
+          <li><svg width="16" height="16" aria-hidden="true"><use href="#shield"/></svg>Garantia de 7 dias</li>
+          <li><svg width="16" height="16" aria-hidden="true"><use href="#bolt"/></svg>Acesso imediato</li>
+          <li><svg width="16" height="16" aria-hidden="true"><use href="#check"/></svg>Lançamento: <b>R$ 97,90</b></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
-
-
 
 <!-- faixa de autoridade -->
 <div class="strip">
@@ -65,34 +99,34 @@
 <section class="colega">
   <div class="wrap split">
     <div class="arch light">
-      <img src="assets/valeria-pensativa.webp" alt="Dra. Valéria Mattos em pose pensativa">
+      <img src="assets/valeria-pensativa.webp" width="900" height="1350" loading="lazy" decoding="async" alt="Dra. Valéria Mattos em pose pensativa">
     </div>
     <div>
-      <p class="kicker">Conversa de colega para colega</p>
+      <p class="kicker">De colega para colega</p>
       <h2>Você aprendeu a fazer Ortodontia. Mas alguém te ensinou a <em>organizar a Ortodontia</em> dentro dos convênios?</h2>
-      <p class="lead">Colega, deixa eu te perguntar uma coisa: você sabe diagnosticar, planejar e conduzir um tratamento ortodôntico. Mas, quando chega a hora de trabalhar com convênios, surgem outras dúvidas:</p>
+      <p class="lead">Colega, você sabe diagnosticar, planejar e conduzir um tratamento ortodôntico. Mas, quando chega a hora de trabalhar com convênios, surgem outras dúvidas:</p>
       <ul class="questions">
-        <li><span>?</span>Por onde começar?</li>
-        <li><span>?</span>Quais documentos separar?</li>
-        <li><span>?</span>O que analisar antes de entrar na plataforma?</li>
-        <li><span>?</span>Como evitar voltar várias vezes à mesma etapa?</li>
+        <li><span aria-hidden="true">?</span>Por onde começar?</li>
+        <li><span aria-hidden="true">?</span>Quais documentos separar?</li>
+        <li><span aria-hidden="true">?</span>O que analisar antes de entrar na plataforma?</li>
+        <li><span aria-hidden="true">?</span>Como evitar voltar várias vezes à mesma etapa?</li>
       </ul>
-      <p>Eu conheço essa realidade. Foi por isso que criei o OrtoFlow: para compartilhar uma sequência de trabalho simples, organizada e aplicável ao consultório. Você não precisa descobrir tudo sozinho.</p>
-      <p class="sign">Dra. Valéria Mattos<small>Criadora do OrtoFlow</small></p>
+      <p>Eu conheço essa realidade. Por isso criei o OrtoFlow: uma sequência de trabalho simples, organizada e aplicável ao consultório. Você não precisa descobrir tudo sozinho.</p>
+      <p class="sign"><span class="hand">Valéria Mattos</span><small>Criadora do OrtoFlow</small></p>
     </div>
   </div>
 </section>
 
 <!-- 3. o que é -->
-<section class="ice method">
+<section class="ice method" id="metodo">
   <div class="wrap">
     <div class="center narrow">
       <p class="kicker">O que é o OrtoFlow</p>
       <h2>Não é mais um curso de técnica ortodôntica. É um <em>método para organizar</em> seu fluxo de trabalho.</h2>
-      <p class="lead">O OrtoFlow é um treinamento online para ortodontistas que querem começar a atender convênios ou estruturar melhor os processos que já realizam. Você aprende a organizar informações, exames, fotografias e documentos; analisar e planejar o caso; preparar a escrita; e só então trabalhar na plataforma, respeitando as exigências de cada operadora.</p>
+      <p class="lead">Um treinamento online para quem quer começar a atender convênios ou estruturar melhor o que já faz. Você aprende uma ordem de trabalho: organizar o caso, analisar e planejar, preparar a escrita e só então entrar na plataforma — respeitando as exigências de cada operadora.</p>
     </div>
     <div class="carousel" data-carousel>
-      <ol class="steps" data-carousel-track>
+      <ol class="steps" data-carousel-track tabindex="0" aria-label="As 4 etapas do método">
       <li class="step">
         <div class="step-n">01</div>
         <p class="step-tag">Organizar</p>
@@ -130,195 +164,200 @@
       <p class="kicker">Benefícios para sua rotina</p>
       <h2>O que muda no seu <em>dia a dia</em></h2>
     </div>
-    <div class="groups">
-      <div class="group">
-        <h3><small>01</small>Método</h3>
-        <ul class="ticks">
-          <li><svg width="20" height="20"><use href="#check"/></svg><span><b>Comece com uma sequência clara:</b> saiba o que fazer e em qual ordem.</span></li>
-          <li><svg width="20" height="20"><use href="#check"/></svg><span>Organize casos e documentos <b>antes</b> de acessar a plataforma.</span></li>
-          <li><svg width="20" height="20"><use href="#check"/></svg><span>Reduza tarefas repetidas e o tempo perdido com improvisações.</span></li>
-        </ul>
-      </div>
-      <div class="group">
-        <h3><small>02</small>Prática</h3>
-        <ul class="ticks">
-          <li><svg width="20" height="20"><use href="#check"/></svg><span><b>Coloque em prática desde as primeiras aulas:</b> aplique cada etapa no seu próprio dia a dia.</span></li>
-          <li><svg width="20" height="20"><use href="#check"/></svg><span><b>Revise as aulas quando quiser:</b> acesso vitalício ao conteúdo gravado para a turma de lançamento.</span></li>
-        </ul>
-      </div>
-      <div class="group">
-        <h3><small>03</small>Acompanhamento</h3>
-        <ul class="ticks">
-          <li><svg width="20" height="20"><use href="#check"/></svg><span>Troque experiências com outros colegas em um <b>grupo exclusivo por 30 dias</b>.</span></li>
-          <li><svg width="20" height="20"><use href="#check"/></svg><span>Participe de <b>encontros semanais</b> para analisar um caso por semana durante os 30 dias de acompanhamento.</span></li>
-        </ul>
-      </div>
-    </div>
+    <!-- cada linha liga uma dor da rotina ao que muda com o metodo. os rotulos
+         das colunas so aparecem no desktop; no celular os icones bastam -->
+    <div class="shift-head" aria-hidden="true"><span>Sem um método</span><span>Com o OrtoFlow</span></div>
+    <ul class="shift">
+      <li>
+        <p class="de"><svg width="18" height="18" aria-hidden="true"><use href="#x"/></svg><span><span class="sr">Antes: </span>Descobrir na tentativa e erro por onde começar</span></p>
+        <p class="para"><svg width="18" height="18" aria-hidden="true"><use href="#check"/></svg><span><span class="sr">Com o OrtoFlow: </span>Uma sequência clara, do primeiro documento ao envio</span></p>
+      </li>
+      <li>
+        <p class="de"><svg width="18" height="18" aria-hidden="true"><use href="#x"/></svg><span><span class="sr">Antes: </span>Abrir a plataforma e perceber que falta algo</span></p>
+        <p class="para"><svg width="18" height="18" aria-hidden="true"><use href="#check"/></svg><span><span class="sr">Com o OrtoFlow: </span>Pasta do paciente pronta antes de começar</span></p>
+      </li>
+      <li>
+        <p class="de"><svg width="18" height="18" aria-hidden="true"><use href="#x"/></svg><span><span class="sr">Antes: </span>Escrever o caso às pressas, direto na plataforma</span></p>
+        <p class="para"><svg width="18" height="18" aria-hidden="true"><use href="#check"/></svg><span><span class="sr">Com o OrtoFlow: </span>Descrição preparada e revisada antes do envio</span></p>
+      </li>
+      <li>
+        <p class="de"><svg width="18" height="18" aria-hidden="true"><use href="#x"/></svg><span><span class="sr">Antes: </span>Tirar as dúvidas sozinho</span></p>
+        <p class="para"><svg width="18" height="18" aria-hidden="true"><use href="#check"/></svg><span><span class="sr">Com o OrtoFlow: </span>Colegas e encontros semanais no primeiro mês</span></p>
+      </li>
+    </ul>
     <div class="cta-block">
-      <a class="cta" href="#oferta">Quero começar com o OrtoFlow <svg width="18" height="18"><use href="#arrow"/></svg></a>
+      <a class="cta" href="#oferta">Quero começar com o OrtoFlow <svg width="18" height="18" aria-hidden="true"><use href="#arrow"/></svg></a>
       <p class="cta-note"><b>R$ 97,90</b> na turma de lançamento · Garantia de 7 dias</p>
     </div>
   </div>
 </section>
 
 <!-- 5. para quem é -->
-<section class="ice audience">
+<section class="ice audience" id="para-quem">
   <div class="wrap">
-<div class="center narrow">
+    <div class="center narrow">
       <p class="kicker">Para quem é</p>
       <h2>Feito para o ortodontista que quer <em>clareza</em> nos convênios</h2>
     </div>
     <div class="who">
-      <div class="who-item"><span class="ix">1</span><p>Para o ortodontista que <b>quer começar</b> a trabalhar com convênios.</p></div>
+      <div class="who-item"><span class="ix">1</span><p>Para quem <b>quer começar</b> a trabalhar com convênios.</p></div>
       <div class="who-item"><span class="ix">2</span><p>Para quem <b>já começou</b>, mas se sente perdido nos processos.</p></div>
-      <div class="who-item"><span class="ix">3</span><p>Para quem deseja <b>organizar documentos, padronizar etapas</b> e conduzir a rotina com mais clareza.</p></div>
+      <div class="who-item"><span class="ix">3</span><p>Para quem quer <b>organizar documentos, padronizar etapas</b> e conduzir a rotina com mais clareza.</p></div>
+    </div>
+    <div class="not-for">
+      <p class="not-for-title">Talvez não seja para você se…</p>
+      <ul>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#x"/></svg>procura um curso de técnica clínica ortodôntica;</li>
+        <li><svg width="18" height="18" aria-hidden="true"><use href="#x"/></svg>espera garantia de credenciamento ou de aprovação de procedimentos.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-<!-- 7. quem vai te acompanhar -->
-<section class="author">
+<!-- 6. quem vai te acompanhar -->
+<section class="author" id="valeria">
   <div class="wrap split">
     <div class="arch">
-      <img src="assets/valeria-autoridade.webp" alt="Dra. Valéria Mattos de braços cruzados, sorrindo">
+      <img src="assets/valeria-autoridade.webp" width="900" height="1350" loading="lazy" decoding="async" alt="Dra. Valéria Mattos de braços cruzados, sorrindo">
     </div>
     <div>
       <p class="kicker">Quem vai te acompanhar</p>
       <p class="author-name">Dra. Valéria Mattos</p>
       <h2>30 anos de clínica, agora <em>a serviço dos colegas</em></h2>
-      <p class="lead">Sou a Dra. Valéria Mattos, cirurgiã-dentista, especialista em Ortodontia, mestre e doutora, com 30 anos de experiência clínica. Criei o OrtoFlow para compartilhar com colegas uma forma organizada de conduzir os processos que fazem parte da rotina ortodôntica por convênios.</p>
+      <p class="lead">Sou cirurgiã-dentista, especialista em Ortodontia, mestre e doutora, com 30 anos de experiência clínica. Criei o OrtoFlow para compartilhar com colegas uma forma organizada de conduzir os processos que fazem parte da rotina ortodôntica por convênios.</p>
     </div>
   </div>
 </section>
 
+<!-- 7. bônus: vem antes do preço, para a pessoa chegar na oferta sabendo tudo o que leva -->
+<section class="ice bonus-sec">
+  <div class="wrap">
+    <div class="center narrow">
+      <p class="kicker">Exclusivo da turma de lançamento</p>
+      <h2>Bônus para quem entrar <em>agora</em></h2>
+    </div>
+    <div class="bonuses">
+      <article class="bonus">
+        <p class="bonus-n">Bônus 01</p>
+        <h3>Comunidade OrtoFlow no WhatsApp</h3>
+        <p>Um espaço para dúvidas, troca de experiências e discussão de casos entre colegas.</p>
+        <p class="bonus-time">Durante 30 dias</p>
+      </article>
+      <article class="bonus">
+        <p class="bonus-n">Bônus 02</p>
+        <h3>Encontros semanais de análise de casos</h3>
+        <p>Um caso analisado por encontro, conversando sobre a aplicação do fluxo. Tudo segue as regras de confidencialidade e proteção dos dados dos pacientes.</p>
+        <p class="bonus-time">Toda semana, durante 30 dias</p>
+      </article>
+      <article class="bonus">
+        <p class="bonus-n">Bônus 03</p>
+        <h3>Acesso vitalício às aulas gravadas</h3>
+        <p>Quem entra no lançamento pode estudar e revisar o conteúdo gravado sempre que precisar.</p>
+        <p class="bonus-time">Vitalício · só as aulas gravadas</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-
-<!-- 9. oferta -->
+<!-- 8. oferta -->
 <section class="dark offer" id="oferta">
   <div class="wrap offer-grid">
-    <div>
-      <p class="kicker">Oferta especial de lançamento</p>
+    <div class="offer-copy">
+      <p class="kicker">Oferta de lançamento</p>
       <h2>Organize sua rotina com o <em>OrtoFlow</em></h2>
-      <p class="lead">Tudo o que você precisa para começar a organizar seus atendimentos por convênios — com apoio de colegas no primeiro mês.</p>
+      <p class="lead">Tudo o que você precisa para começar a organizar seus atendimentos por convênios, com apoio de colegas no primeiro mês.</p>
     </div>
+
     <div class="offer-card">
       <span class="ribbon">Turma de lançamento</span>
       <h3>O que você recebe</h3>
-      <ul class="ticks">
-        <li><svg width="20" height="20"><use href="#check"/></svg><span>Curso online</span></li>
-        <li><svg width="20" height="20"><use href="#check"/></svg><span>Aplicação desde as primeiras aulas</span></li>
-        <li><svg width="20" height="20"><use href="#check"/></svg><span>30 dias de grupo de WhatsApp</span></li>
-        <li><svg width="20" height="20"><use href="#check"/></svg><span>Encontros semanais de análise de casos</span></li>
-        <li><svg width="20" height="20"><use href="#check"/></svg><span>Acesso vitalício às aulas para a turma de lançamento</span></li>
+      <ul class="stack">
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><span>Curso online OrtoFlow, para aplicar desde as primeiras aulas</span></li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><span><small>Bônus 01</small>Comunidade no WhatsApp por 30 dias</span></li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><span><small>Bônus 02</small>Encontros semanais de análise de casos</span></li>
+        <li><svg width="20" height="20" aria-hidden="true"><use href="#check"/></svg><span><small>Bônus 03</small>Acesso vitalício às aulas gravadas</span></li>
       </ul>
       <div class="price">
         <small>Investimento de lançamento</small>
         <div class="value"><sup>R$</sup>97,90</div>
         <p class="inst">ou 12x de R$ 9,84 no cartão</p>
       </div>
-      <a class="cta" href="#oferta">Quero meu acesso vitalício por R$ 97,90 <svg width="18" height="18"><use href="#arrow"/></svg></a>
+      <!-- trocar o href pelo link do checkout (Hotmart, Kiwify, Eduzz...) -->
+      <a class="cta" href="#oferta">Garantir meu acesso <svg width="18" height="18" aria-hidden="true"><use href="#arrow"/></svg></a>
       <div class="safe">
-        <span><svg width="15" height="15"><use href="#shield"/></svg>Pagamento seguro</span>
-        <span><svg width="15" height="15"><use href="#check"/></svg>Acesso imediato</span>
+        <span><svg width="15" height="15" aria-hidden="true"><use href="#shield"/></svg>Pagamento seguro</span>
+        <span><svg width="15" height="15" aria-hidden="true"><use href="#bolt"/></svg>Acesso imediato</span>
       </div>
     </div>
+
     <div class="guarantee">
-        <div class="seal"><div><b>7</b><span>dias de<br>garantia</span></div></div>
-        <div>
-          <h3>Garantia de 7 dias</h3>
-          <p>Conheça o conteúdo. Se não fizer sentido para você, solicite reembolso dentro do prazo e das condições da plataforma.</p>
-        </div>
+      <div class="seal" aria-hidden="true"><b>7</b><span>dias</span></div>
+      <div>
+        <h3>Garantia de 7 dias</h3>
+        <p>Conheça o conteúdo com calma. Se não fizer sentido para você, peça o reembolso em até 7 dias, conforme as condições da plataforma.</p>
       </div>
-  </div>
-
-  <div class="wrap bonus-block">
-    <div class="center narrow bonus-head">
-      <p class="kicker">Bônus exclusivos da turma de lançamento</p>
-      <h2>Bônus para quem entrar <em>agora</em></h2>
-    </div>
-    <div class="bonuses">
-      <article class="bonus">
-        <div class="bonus-top"><span class="bonus-n">Bônus 1</span><span class="bonus-time">30 dias</span></div>
-        <h3>Comunidade OrtoFlow no WhatsApp</h3>
-        <p>Um espaço para dúvidas, troca de experiências e discussão de casos entre colegas durante os primeiros 30 dias.</p>
-      </article>
-      <article class="bonus">
-        <div class="bonus-top"><span class="bonus-n">Bônus 2</span><span class="bonus-time">Semanal · 30 dias</span></div>
-        <h3>Encontros semanais de análise de casos</h3>
-        <p>Vamos nos reunir semanalmente para analisar um caso por encontro e conversar sobre a aplicação do fluxo. A participação e as discussões seguem as regras de confidencialidade e proteção dos dados dos pacientes.</p>
-      </article>
-      <article class="bonus">
-        <div class="bonus-top"><span class="bonus-n">Bônus 3</span><span class="bonus-time">Vitalício</span></div>
-        <h3>Acesso vitalício às aulas gravadas</h3>
-        <p>Quem participar do lançamento garante acesso vitalício ao conteúdo gravado do curso, para estudar e revisar quando precisar.</p>
-        <p class="fine">O acesso vitalício não inclui acompanhamento contínuo: grupo e reuniões são oferecidos por 30 dias.</p>
-      </article>
-    </div>
-    <div class="cta-block bonus-cta">
-      <a class="cta" href="#oferta">Quero garantir meus bônus de lançamento <svg width="18" height="18"><use href="#arrow"/></svg></a>
     </div>
   </div>
-  </section>
+</section>
 
-<!-- 10. perguntas frequentes -->
-<section class="faq-sec">
+<!-- 9. perguntas frequentes -->
+<section class="faq-sec" id="duvidas">
   <div class="wrap">
     <div class="center narrow">
       <p class="kicker">Perguntas frequentes</p>
       <h2>Ficou alguma <em>dúvida?</em></h2>
     </div>
     <div class="faq">
-      <details name="faq"><summary>Nunca trabalhei com convênios. Posso fazer?</summary><p>Sim. O curso também é para quem deseja começar e precisa de uma sequência organizada.</p></details>
-      <details name="faq"><summary>Já atendo convênios. Serve para mim?</summary><p>Sim. O foco é estruturar e padronizar os processos da rotina.</p></details>
+      <details name="faq"><summary>Nunca trabalhei com convênios. Posso fazer?</summary><p>Sim. O curso também é para quem quer começar e precisa de uma sequência organizada.</p></details>
+      <details name="faq"><summary>Já atendo convênios. Serve para mim?</summary><p>Sim. O foco é estruturar e padronizar os processos da sua rotina.</p></details>
       <details name="faq"><summary>O curso ensina técnicas clínicas?</summary><p>Não. O foco é a organização do fluxo de atendimento ortodôntico por convênios.</p></details>
       <details name="faq"><summary>O curso cobre todas as plataformas?</summary><p>Você aprende uma lógica de organização. As exigências e funcionalidades variam conforme a operadora.</p></details>
-      <details name="faq"><summary>Por quanto tempo terei suporte?</summary><p>O grupo exclusivo de WhatsApp e os encontros semanais são oferecidos por 30 dias.</p></details>
-      <details name="faq"><summary>O acesso vitalício inclui as reuniões?</summary><p>Não. O acesso vitalício é às aulas gravadas do curso para os participantes da turma de lançamento.</p></details>
-      <details name="faq"><summary>E se eu não gostar?</summary><p>Você poderá solicitar reembolso em até 7 dias, conforme as condições da plataforma.</p></details>
+      <details name="faq"><summary>Por quanto tempo terei suporte?</summary><p>O grupo de WhatsApp e os encontros semanais acontecem durante 30 dias.</p></details>
+      <details name="faq"><summary>O acesso vitalício inclui as reuniões?</summary><p>Não. O acesso vitalício é às aulas gravadas, para os participantes da turma de lançamento.</p></details>
+      <details name="faq"><summary>E se eu não gostar?</summary><p>Você pode pedir o reembolso em até 7 dias, conforme as condições da plataforma.</p></details>
     </div>
   </div>
 </section>
 
-<!-- 11. convite final -->
+<!-- 10. convite final -->
 <section class="ice final">
   <div class="wrap split">
     <div class="arch">
-      <img src="assets/valeria-convite.webp" alt="Dra. Valéria Mattos sorrindo">
+      <img src="assets/valeria-convite.webp" width="900" height="1350" loading="lazy" decoding="async" alt="Dra. Valéria Mattos sorrindo">
     </div>
     <div>
       <p class="kicker">Convite final</p>
       <h2>Colega, seu próximo passo pode começar com <em>organização.</em></h2>
-      <p class="lead">A Ortodontia já exige muito da nossa atenção clínica. A parte administrativa não precisa ser um processo de improvisação constante. Se você quer começar a atender convênios ou colocar ordem nos processos que já utiliza, quero te convidar para o OrtoFlow.</p>
-      <p class="sign">Vamos organizar esse fluxo juntos?</p>
+      <p class="lead">A Ortodontia já exige muito da nossa atenção clínica. A parte administrativa não precisa ser improviso constante. Se você quer começar a atender convênios ou colocar ordem nos processos que já usa, quero te convidar para o OrtoFlow.</p>
+      <p class="sign"><span class="hand">Vamos organizar esse fluxo juntos?</span></p>
       <div class="cta-block">
-        <a class="cta" href="#oferta">Quero começar com o OrtoFlow <svg width="18" height="18"><use href="#arrow"/></svg></a>
+        <a class="cta" href="#oferta">Quero começar com o OrtoFlow <svg width="18" height="18" aria-hidden="true"><use href="#arrow"/></svg></a>
         <p class="cta-note"><b>R$ 97,90</b> · Acesso vitalício às aulas · Garantia de 7 dias</p>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="wrap">
     <div>
-      <span class="logo" role="img" aria-label="OrtoFlow"></span>
+      <img class="logo" src="assets/logo-ortoflow.webp" width="537" height="178" loading="lazy" alt="OrtoFlow">
       <p>OrtoFlow · Fluxo em Ortodontia · Dra. Valéria Mattos</p>
+      <!-- links ainda sem destino: apontar para as paginas reais antes de publicar -->
       <div class="legal"><a href="#">Política de privacidade</a><a href="#">Termos de uso</a></div>
     </div>
     <p class="disc">O OrtoFlow é um treinamento sobre organização de processos. Não garante credenciamento, aprovação de procedimentos ou resultados financeiros. As exigências variam conforme cada operadora. © 2026 OrtoFlow.</p>
   </div>
 </footer>
 
-<div class="sticky" id="sticky">
+<aside class="sticky" id="sticky" aria-label="Atalho para a oferta">
   <div class="p"><b>R$ 97,90</b><span>Garantia de 7 dias</span></div>
   <a class="cta" href="#oferta">Quero começar</a>
-</div>
+</aside>
 
+<script src="assets/js/header.js"></script>
 <script src="assets/js/sticky.js"></script>
 <script src="assets/js/video.js"></script>
 <script src="assets/js/faq.js"></script>

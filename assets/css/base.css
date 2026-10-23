@@ -36,8 +36,8 @@
   --sp-10:72px;
 
   /* ---- ritmo de pagina ---- */
-  --section-y:36px;           /* padding vertical da secao; desktop sobrescreve */
-  --head-gap:20px;            /* cabecalho da secao -> conteudo */
+  --section-y:44px;           /* padding vertical da secao; desktop sobrescreve */
+  --head-gap:24px;            /* cabecalho da secao -> conteudo */
   --cta-gap:28px;             /* conteudo -> bloco de CTA */
 
   /* ---- raios ---- */
@@ -72,6 +72,10 @@
   /* ---- tipografia ---- */
   --display:"Montserrat",system-ui,sans-serif;
   --text:"Nunito Sans",system-ui,sans-serif;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;   /* so assinatura e recados */
+
+  /* traco de caneta: sublinha o destaque do titulo e o link ativo do menu */
+  --rabisco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C38 5.2 86 4.1 124 5.6c27 1 51 2.6 73 .9' fill='none' stroke='%232BB0F0' stroke-width='3.2' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E");
 }
 
 /* estado de teclado: nenhum elemento interativo tinha foco visivel */
@@ -89,70 +93,112 @@ body{font-family:var(--text);color:var(--ink);background:var(--white);font-size:
 img{display:block;max-width:100%}
 .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 var(--sp-5)}
 section{padding:var(--section-y) 0}
+/* links do menu e CTAs param com o titulo da secao visivel, sem colar no topo
+   (no desktop o menu fixo ocupa o topo; o padding da secao absorve o resto) */
+main [id]{scroll-margin-top:var(--sp-4)}
 
 /* type */
-.kicker{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-deep);display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-4)}
-.kicker::before{content:"";flex:none;width:28px;height:3px;border-radius:3px;background:var(--cyan)}
-h1,h2,h3{font-family:var(--display);color:var(--navy);letter-spacing:-.02em}
-h1{font-size:31px;line-height:1.14;font-weight:800}
+.kicker{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-deep);display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+.kicker::before{content:"";flex:none;width:22px;height:2px;border-radius:2px;background:var(--cyan)}
+h1,h2,h3{font-family:var(--display);color:var(--navy);letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:30px;line-height:1.14;font-weight:800}
 h2{font-size:27px;line-height:1.18;font-weight:800}
 h3{font-size:18px;line-height:1.3;font-weight:700}
 h1 em,h2 em{font-style:italic;font-weight:900;color:var(--cyan-ink)}
-.lead{font-size:18px;color:var(--muted);margin-top:var(--sp-4)}
+.lead{font-size:18px;color:var(--muted);margin-top:var(--sp-4);text-wrap:pretty}
 p+p{margin-top:var(--sp-3)}
 .dark{background:var(--navy);color:var(--on-navy)}
 .dark h2,.dark h3{color:var(--white)}
-/* cartoes claros dentro de secao escura: o titulo volta ao navy, senao fica
+/* cartao claro dentro de secao escura: o titulo volta ao navy, senao fica
    branco sobre branco e some */
-.dark .bonus h3,.dark .offer-card h3{color:var(--navy)}
+.dark .offer-card h3{color:var(--navy)}
 .dark h2 em{color:var(--cyan)}
 .dark .kicker{color:var(--cyan)}
 .ice{background:var(--ice)}
 .dark .lead{color:var(--on-navy-muted)}
 
-/* CTA */
-.cta{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:60px;padding:16px 26px;border-radius:var(--r-pill);background:var(--cyan);color:var(--navy-deep);font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;text-align:center;box-shadow:var(--sh-cta);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+/* CTA. caixa normal em vez de maiusculas espacadas: le mais rapido e nao
+   quebra em duas linhas gritando no celular */
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;padding:16px 20px;border-radius:var(--r-pill);background:var(--cyan);color:var(--navy-deep);font-family:var(--display);font-weight:800;font-size:15.5px;letter-spacing:-.005em;text-decoration:none;text-align:center;box-shadow:var(--sh-cta);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
 .cta:hover{transform:translateY(-2px);box-shadow:var(--sh-cta-hv)}
 .cta:active{transform:translateY(0);box-shadow:var(--sh-cta)}
-.cta svg{flex:none}
+.cta svg{flex:none;transition:transform var(--t-fast) var(--ease)}
+.cta:hover svg{transform:translateX(3px)}
 .cta-note{margin-top:var(--sp-3);font-size:14px;color:var(--muted);text-align:center}
 .cta-note b{color:var(--navy)}
 .dark .cta-note{color:var(--on-navy-muted)}
 .dark .cta-note b{color:var(--white)}
 .cta-block{margin-top:var(--cta-gap)}
 
-/* header */
-.top{padding:var(--sp-3) 0;border-bottom:1px solid var(--line);background:var(--white)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between}
-.logo{display:block;width:132px;aspect-ratio:525/205;background:url(../logo-ortoflow.png) no-repeat;background-size:109.9% auto;background-position:76.9% 39.5%}
-.top-badge{font-size:12px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:var(--sp-1)}
-.top-badge svg{color:var(--cyan-deep)}
+/* selos de confianca logo abaixo do primeiro botao */
+.trust{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:var(--sp-2) var(--sp-4);margin-top:var(--sp-4);font-size:14px;color:var(--muted)}
+.trust li{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.trust svg{flex:none;color:var(--cyan-deep)}
+.trust b{color:var(--navy)}
+
+/* header. no celular fica no topo e rola junto: quem leva a oferta junto e a
+   barra fixa de baixo. sem filete: o branco do menu continua no branco do hero */
+.top{position:relative;z-index:60;padding:var(--sp-4) 0 var(--sp-2);background:var(--white)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4)}
+.top-marca{flex:none;display:block}
+.logo{width:124px;height:auto}
+.top-nav{display:none}
+.top-cta{display:inline-flex;align-items:center;gap:6px;padding:var(--sp-2) 2px;font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);text-decoration:none;background:var(--rabisco) left calc(100% - 2px)/100% 6px no-repeat}
+.top-cta .longo{display:none}
+.top-cta svg{flex:none;transition:transform var(--t-fast) var(--ease)}
+.top-cta:hover svg{transform:translateX(3px)}
 
 /* hero */
-.hero{padding:36px 0 0;background:linear-gradient(180deg,var(--white) 0%,var(--ice) 100%);position:relative;overflow:hidden}
-/* no celular tudo empilha na ordem do HTML: titulo, video, texto, botao.
-   o video ao lado do titulo acontece so a partir de 960px */
+.hero{padding:var(--sp-7) 0 0;background:linear-gradient(180deg,var(--white) 0%,var(--ice) 100%);position:relative;overflow:hidden}
+/* no celular tudo empilha na ordem do HTML: titulo, video, texto, botao */
 .hero-title{margin-bottom:var(--sp-5)}
+/* sublinhado de caneta: um traco so, levemente torto, como marcado a mao.
+   o clone repete o traco em cada linha quando o trecho quebra */
+.hero-title em{padding-bottom:.08em;background:var(--rabisco) left bottom/100% .32em no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .hero-copy{padding-bottom:var(--sp-9)}
-.watch{display:none}
 
-/* a capa e a miniatura do proprio YouTube; o gradiente so aparece enquanto ela carrega.
-   no celular o player sangra ate as bordas da tela para ganhar largura */
-.video{position:relative;margin:var(--sp-6) calc(var(--sp-5) * -1) 0;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);box-shadow:var(--sh-3)}
-.video .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border:0;padding:0;border-radius:50%;background:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+/* ---- player ---- */
+/* antes do play a capa e a miniatura do proprio YouTube; o gradiente so aparece
+   enquanto ela carrega. no celular o player sangra ate as bordas da tela */
+.video{position:relative;margin:var(--sp-6) calc(var(--sp-5) * -1) 0;aspect-ratio:16/9;overflow:hidden;background:radial-gradient(120% 120% at 80% 0%,var(--navy-lift) 0%,var(--navy) 45%,var(--navy-deep) 100%);box-shadow:var(--sh-3);isolation:isolate}
+.video .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:opacity var(--t-mid) var(--ease)}
+.play{position:absolute;left:50%;top:50%;z-index:4;transform:translate(-50%,-50%);width:74px;height:74px;border:0;padding:0;border-radius:50%;background:var(--white);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px rgba(255,255,255,.14);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease),opacity var(--t-mid) var(--ease)}
 .play:hover{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 0 0 14px rgba(255,255,255,.2)}
 .play:active{transform:translate(-50%,-50%) scale(.98)}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .play::after{content:"";margin-left:6px;border-left:22px solid var(--navy);border-top:13px solid transparent;border-bottom:13px solid transparent}
+/* o iframe e mais alto que a caixa: o YouTube encaixa o video pela largura e
+   poe faixas pretas em cima e embaixo; e nessas faixas que ele desenha titulo,
+   canal e logo. o overflow da caixa corta as faixas e o video fica inteiro.
+   sem toque no iframe, o YouTube tambem nao reabre esses paineis no hover */
+.video iframe{position:absolute;left:0;top:-90px;width:100%;height:calc(100% + 180px);border:0;pointer-events:none;z-index:1}
+.video video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;z-index:1}
+.vp-tap{position:absolute;inset:0;z-index:3;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+/* tocando: capa e botao grande somem. pausado ou no fim: voltam por cima do
+   video e escondem as sugestoes que o YouTube mostraria */
+.video.vp-tocando .cover,.video.vp-tocando .play{opacity:0;pointer-events:none}
+.video.vp-carregando .play{animation:vp-pulso 1s var(--ease) infinite alternate}
+@keyframes vp-pulso{to{box-shadow:0 0 0 18px rgba(255,255,255,.08)}}
+.vp-barra{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;gap:var(--sp-1);padding:var(--sp-7) var(--sp-2) var(--sp-1);background:linear-gradient(transparent,rgba(8,28,74,.78));color:var(--white);transition:opacity var(--t-mid) var(--ease)}
+.video:not(.vp-comecou) .vp-barra{display:none}
+.video.vp-ocioso .vp-barra{opacity:0;pointer-events:none}
+.vp-btn{flex:none;width:40px;height:40px;border:0;border-radius:50%;background:none;color:inherit;display:grid;place-items:center;cursor:pointer}
+.vp-btn:hover{background:rgba(255,255,255,.12)}
+.vp-btn[hidden]{display:none}
+.vp-trilho{flex:1;height:28px;display:flex;align-items:center;cursor:pointer;touch-action:none}
+.vp-trilho i{position:relative;display:block;width:100%;height:4px;border-radius:4px;background:rgba(255,255,255,.28)}
+.vp-trilho b{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:inherit;background:var(--cyan)}
+.vp-trilho:focus-visible{outline:none;box-shadow:none}
+.vp-trilho:focus-visible i{box-shadow:0 0 0 3px var(--cyan)}
+.vp-tempo{flex:none;font-size:12px;font-variant-numeric:tabular-nums;padding:0 var(--sp-1);opacity:.9}
+.video:fullscreen{max-width:none;border-radius:0;margin:0}
+.video:-webkit-full-screen{max-width:none;border-radius:0;margin:0}
 
 /* authority strip */
 .strip{background:var(--navy);color:var(--white);padding:var(--sp-6) 0}
 .strip ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
 .strip li{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 var(--sp-2);font-size:12px;color:var(--on-navy-muted);line-height:1.3}
 .strip li+li{border-left:1px solid var(--hair-on-navy-2)}
-.strip li b{font-size:16px}
-.strip li b{font-family:var(--display);font-weight:800;font-style:italic;font-size:20px;color:var(--white);letter-spacing:-.01em}
+.strip li b{font-family:var(--display);font-weight:800;font-style:italic;font-size:18px;line-height:1.15;color:var(--white);letter-spacing:-.01em;margin-bottom:2px}
 
 /* photo on arch */
 .arch{position:relative;width:100%;max-width:340px;margin:0 auto;aspect-ratio:4/4.3}
@@ -168,12 +214,14 @@ p+p{margin-top:var(--sp-3)}
 .colega .arch{max-width:210px;margin-bottom:var(--sp-5)}
 /* lista de perguntas: sem caixa nem raio, que davam aparencia de botao.
    o "?" fica pendurado na margem e o filete separa uma pergunta da outra */
-.questions{list-style:none;margin:var(--sp-5) 0;display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-5);gap:0;border-top:1px solid var(--line)}
+.questions{list-style:none;margin:var(--sp-5) 0;display:grid;grid-template-columns:1fr 1fr;gap:0 var(--sp-5);border-top:1px solid var(--line)}
 .questions li{display:flex;gap:var(--sp-2);align-items:baseline;padding:var(--sp-3) 0;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:14px;color:var(--navy);line-height:1.3}
 .questions li:nth-last-child(-n+2){border-bottom:0}
 .questions li span{flex:none;width:14px;font-style:italic;font-weight:900;font-size:18px;color:var(--cyan-deep);line-height:1.2}
 .sign{margin-top:var(--sp-5);font-family:var(--display);font-weight:700;font-style:italic;color:var(--navy)}
-.sign small{display:block;font-family:var(--text);font-style:normal;font-weight:600;font-size:14px;color:var(--muted)}
+/* assinatura a mao: a unica letra cursiva da pagina, para soar pessoal sem enfeitar */
+.sign .hand{display:block;font-family:var(--hand);font-style:normal;font-weight:600;font-size:32px;line-height:1;color:var(--navy);transform:rotate(-2deg);transform-origin:left center}
+.sign small{display:block;margin-top:var(--sp-1);font-family:var(--text);font-style:normal;font-weight:600;font-size:14px;color:var(--muted)}
 
 /* method */
 /* carrossel: a rolagem e o swipe sao nativos. sem JS continua uma lista
@@ -182,6 +230,7 @@ p+p{margin-top:var(--sp-3)}
 .steps{list-style:none;margin:0;display:flex;gap:var(--sp-3);overflow-x:auto;overscroll-behavior-x:contain;
        scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:var(--sp-1)}
 .steps::-webkit-scrollbar{display:none}
+.steps:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--r-md)}
 .step{flex:0 0 100%;scroll-snap-align:start}
 .carousel-nav{display:flex;align-items:center;justify-content:center;gap:var(--sp-4);margin-top:var(--sp-5)}
 .carousel-nav[hidden]{display:none}
@@ -190,11 +239,13 @@ p+p{margin-top:var(--sp-3)}
           transition:background var(--t-fast) var(--ease),border-color var(--t-fast) var(--ease),opacity var(--t-fast) var(--ease)}
 .car-seta:disabled{opacity:.35;cursor:default}
 .car-bolinhas{display:flex;gap:var(--sp-2);align-items:center}
-.car-bolinha{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--line);cursor:pointer;
+/* a bolinha desenhada tem 8px, mas a area de toque tem 24px */
+.car-bolinha{position:relative;width:8px;height:8px;padding:0;border:0;border-radius:50%;background:var(--line);cursor:pointer;
              transition:background var(--t-fast) var(--ease),width var(--t-fast) var(--ease)}
+.car-bolinha::before{content:"";position:absolute;inset:-8px}
 .car-bolinha.ativo{width:24px;border-radius:var(--r-pill);background:var(--cyan-deep)}
 .step{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--sp-5);box-shadow:var(--sh-1);position:relative}
-.step-n{font-family:var(--display);font-style:italic;font-weight:900;font-size:32px;line-height:1;color:var(--cyan);letter-spacing:-.04em}
+.step-n{font-family:var(--display);font-style:italic;font-weight:900;font-size:32px;line-height:1;color:var(--cyan-ink);letter-spacing:-.04em}
 .step-tag{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:var(--sp-2) 0 var(--sp-1)}
 .step ul{list-style:none;margin-top:var(--sp-3);display:grid;gap:var(--sp-2)}
 /* marcador alinhado por flex, nao por posicao absoluta com deslocamento fixo:
@@ -202,69 +253,81 @@ p+p{margin-top:var(--sp-3)}
    linha que quebra passa a alinhar pelo texto, nao pelo marcador */
 .step li{display:flex;gap:var(--sp-2);font-size:15px;color:var(--muted);line-height:1.5}
 .step li::before{content:"";flex:none;width:7px;height:7px;margin-top:calc((1.5em - 11px) / 2);border-radius:50%;border:2px solid var(--cyan)}
-.motto{margin-top:var(--sp-6);text-align:center;font-family:var(--display);font-weight:800;font-size:22px;line-height:1.3;color:var(--navy);letter-spacing:-.02em}
+.motto{margin-top:var(--sp-7);text-align:center;font-family:var(--display);font-weight:800;font-size:22px;line-height:1.3;color:var(--navy);letter-spacing:-.02em}
 .motto em{display:block;font-style:italic;font-weight:900;color:var(--cyan-deep)}
 
-/* benefits */
-.groups{margin-top:var(--head-gap);display:grid;gap:var(--sp-5)}
-.group{border-top:3px solid var(--navy);padding-top:var(--sp-4)}
-.group h3{display:flex;align-items:baseline;gap:var(--sp-2)}
-.group h3 small{font-style:italic;font-weight:900;color:var(--cyan-deep);font-size:14px}
-.ticks{list-style:none;margin-top:var(--sp-2);display:grid;gap:var(--sp-2)}
-.ticks li{display:flex;gap:var(--sp-3);font-size:16px;line-height:1.5}
-.ticks li svg{flex:none;margin-top:3px;color:var(--cyan-deep)}
-.ticks li b{color:var(--navy)}
+/* benefits: antes e depois, uma dor por linha */
+.shift{list-style:none;margin-top:var(--head-gap);border-top:1px solid var(--line)}
+.shift li{padding:var(--sp-4) 0;border-bottom:1px solid var(--line)}
+.shift p{display:flex;gap:var(--sp-2);line-height:1.4}
+.shift p>span{text-wrap:balance}
+.shift svg{flex:none;margin-top:1px}
+.shift .de{font-size:15px;color:var(--muted)}
+.shift .de svg{color:var(--muted);opacity:.7}
+.shift .para{margin-top:6px;font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em;color:var(--navy)}
+.shift .para svg{color:var(--cyan-deep)}
+.shift-head{display:none}
+/* texto so para leitor de tela: diz de que lado da comparacao cada frase esta */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* audience */
 .who{margin-top:var(--head-gap);display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
 .who-item{display:flex;flex-direction:column;gap:var(--sp-2);align-items:flex-start;background:var(--white);border-radius:var(--r-md);padding:var(--sp-4);border:1px solid var(--line);box-shadow:var(--sh-1)}
 .who-item:last-child{grid-column:1 / -1}
-.who-item p{font-size:14.5px}
 .who-item .ix{flex:none;width:34px;height:34px;font-size:15px;border-radius:50%;background:var(--navy);color:var(--white);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-style:italic}
 .who-item p{font-size:16px;line-height:1.45;color:var(--ink)}
 .who-item p b{color:var(--navy);font-family:var(--display)}
-
+/* "para quem nao e": tracejado e sem sombra, para ler como observacao, nao como oferta */
+.not-for{margin-top:var(--sp-5);padding:var(--sp-4) var(--sp-5);border:1.5px dashed var(--line);border-radius:var(--r-md)}
+.not-for-title{font-family:var(--display);font-weight:700;font-size:15px;color:var(--navy)}
+.not-for ul{list-style:none;margin-top:var(--sp-2);display:grid;gap:var(--sp-1)}
+.not-for li{display:flex;gap:var(--sp-2);font-size:15px;line-height:1.5;color:var(--muted)}
+.not-for li svg{flex:none;margin-top:3px;color:var(--muted);opacity:.8}
 
 /* author */
 .author .arch{max-width:210px;margin-bottom:var(--sp-5)}
 .author-name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--cyan-deep);letter-spacing:.02em;margin-bottom:var(--sp-1)}
 
-/* bonuses */
-.bonus-block{margin-top:var(--sp-8);padding-top:var(--sp-8);border-top:1px solid var(--hair-on-navy)}
-.bonus-head .kicker{color:var(--cyan)}
-.bonus-head h2{color:var(--white)}
-.bonus-head h2 em{color:var(--cyan)}
+/* bonuses. sem enfeite no canto: o numero grande em italico faz o papel de
+   marca e a duracao vai embaixo, como uma anotacao de rodape do cartao */
 .bonuses{margin-top:var(--head-gap);display:grid;gap:var(--sp-3)}
-.bonus{background:var(--white);border-radius:var(--r-md);padding:var(--sp-5);border:1px solid var(--line);box-shadow:var(--sh-1);position:relative;overflow:hidden}
-.bonus::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:var(--ice)}
-.bonus-top{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-3);position:relative;z-index:1}
-.bonus-n{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--navy);padding:6px var(--sp-3);border-radius:var(--r-pill)}
-.bonus-time{font-family:var(--display);font-weight:700;font-size:12px;color:var(--cyan-deep)}
-.bonus h3{position:relative;z-index:1}
-.bonus p{margin-top:var(--sp-2);font-size:15px;color:var(--muted);position:relative;z-index:1}
-.bonus .fine{margin-top:var(--sp-2);font-size:13px;color:var(--muted);opacity:.85}
+.bonus{display:flex;flex-direction:column;background:var(--white);border-radius:var(--r-md);padding:var(--sp-5);border:1px solid var(--line);border-top:3px solid var(--cyan);box-shadow:var(--sh-1)}
+.bonus .bonus-n{font-family:var(--display);font-weight:900;font-style:italic;font-size:13px;letter-spacing:.02em;color:var(--cyan-deep);margin-bottom:var(--sp-2)}
+.bonus p{font-size:15px;color:var(--muted)}
+.bonus h3+p{margin-top:var(--sp-2)}
+.bonus .bonus-time{margin-top:auto;padding-top:var(--sp-4);font-family:var(--display);font-weight:700;font-size:13px;color:var(--navy)}
+.bonus .bonus-time::before{content:"";display:block;width:100%;height:1px;background:var(--line);margin-bottom:var(--sp-3)}
 
 /* offer */
 .offer{position:relative;overflow:hidden}
-.offer-card{margin-top:var(--head-gap);background:var(--white);color:var(--ink);border-radius:var(--r-xl);padding:var(--sp-7) var(--sp-6);box-shadow:var(--sh-4);position:relative}
-.offer-card .ribbon{position:absolute;top:-14px;left:22px;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:var(--cyan);color:var(--navy-deep);padding:7px var(--sp-3);border-radius:var(--r-pill)}
+.offer-card{margin-top:var(--head-gap);background:var(--white);color:var(--ink);border-radius:var(--r-xl);padding:var(--sp-7) var(--sp-5) var(--sp-6);box-shadow:var(--sh-4);position:relative}
+.offer-card .ribbon{position:absolute;top:-14px;left:22px;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:var(--cyan);color:var(--navy-deep);padding:7px var(--sp-3);border-radius:var(--r-pill)}
 .offer-card h3{font-size:20px;margin-top:var(--sp-1)}
-.offer-card .ticks{margin-top:var(--sp-4)}
-.price{margin-top:var(--sp-6);padding-top:var(--sp-6);border-top:1px dashed var(--line);text-align:center}
-.price small{display:block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+/* lista do que vem junto: curso + bonus, cada bonus com a etiqueta pequena acima */
+.stack{list-style:none;margin-top:var(--sp-4);display:grid}
+.stack li{display:flex;gap:var(--sp-3);padding:var(--sp-3) 0;font-size:16px;line-height:1.4;color:var(--ink);border-top:1px solid var(--line)}
+.stack li:first-child{border-top:0;padding-top:0;font-weight:700;color:var(--navy)}
+.stack li svg{flex:none;margin-top:1px;color:var(--cyan-deep)}
+.stack small{display:block;font-family:var(--display);font-weight:800;font-style:italic;font-size:11px;letter-spacing:.04em;color:var(--cyan-deep);margin-bottom:2px}
+.price{margin-top:var(--sp-4);padding-top:var(--sp-5);border-top:1px dashed var(--line);text-align:center}
+.price small{display:block;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .price .value{font-family:var(--display);font-weight:900;font-style:italic;color:var(--navy);font-size:58px;line-height:1.05;letter-spacing:-.04em;margin-top:var(--sp-1)}
 .price .value sup{font-size:22px;vertical-align:top;position:relative;top:12px;margin-right:4px;font-style:normal;font-weight:800}
 .price .inst{font-size:15px;color:var(--muted);margin-top:var(--sp-1)}
-.offer-card .cta{margin-top:var(--sp-6)}
+.offer-card .cta{margin-top:var(--sp-5)}
 .safe{display:flex;justify-content:center;gap:var(--sp-4);flex-wrap:wrap;margin-top:var(--sp-3);font-size:13px;color:var(--muted)}
 .safe span{display:flex;align-items:center;gap:var(--sp-1)}
 .safe svg{color:var(--cyan-deep)}
-.guarantee{margin-top:var(--sp-7);display:flex;gap:var(--sp-4);align-items:center;background:var(--veil-on-navy);border:1px solid var(--hair-on-navy);border-radius:var(--r-md);padding:var(--sp-5)}
-.seal{flex:none;width:86px;height:86px;border-radius:50%;background:var(--white);display:grid;place-items:center;text-align:center;position:relative;box-shadow:0 0 0 5px rgba(43,176,240,.35)}
-.seal b{font-family:var(--display);font-weight:900;font-style:italic;font-size:30px;line-height:.9;color:var(--navy);display:block}
-.seal span{font-family:var(--display);font-weight:800;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan-deep)}
+.guarantee{margin-top:var(--sp-7);display:flex;gap:var(--sp-5);align-items:center;background:var(--veil-on-navy);border:1px solid var(--hair-on-navy);border-radius:var(--r-md);padding:var(--sp-5)}
+/* selo de carimbo: so "7" e "dias" dentro do circulo, que cabem com folga.
+   o texto completo fica no titulo ao lado. o anel tracejado e a leve
+   inclinacao dao cara de carimbo de verdade */
+.seal{flex:none;position:relative;width:84px;height:84px;border-radius:50%;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);box-shadow:0 0 0 4px rgba(43,176,240,.35)}
+.seal::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1.5px dashed var(--cyan-ink);opacity:.6}
+.seal b{font-family:var(--display);font-weight:900;font-style:italic;font-size:34px;line-height:.9;color:var(--navy)}
+.seal span{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-deep);margin-top:2px}
 .guarantee h3{font-size:17px}
-.guarantee p{font-size:14.5px;color:var(--on-navy-soft);margin-top:var(--sp-1)}
+.guarantee p{font-size:15px;line-height:1.5;color:var(--on-navy-soft);margin-top:var(--sp-1)}
 
 /* faq */
 .faq{margin-top:var(--head-gap);display:grid;gap:var(--sp-2)}
@@ -288,25 +351,29 @@ p+p{margin-top:var(--sp-3)}
 /* final */
 .final{position:relative;overflow:hidden}
 .final .arch{max-width:210px;margin-bottom:var(--sp-5)}
+.final .sign .hand{font-size:30px;color:var(--cyan-deep)}
 
 /* footer */
 footer{border-top:1px solid var(--line);padding:var(--sp-7) 0 110px;font-size:13px;color:var(--muted)}
-footer .logo{width:120px;margin-bottom:var(--sp-3)}
+footer .logo{width:112px;margin-bottom:var(--sp-3)}
 footer .legal{display:flex;gap:var(--sp-4);margin:var(--sp-3) 0}
-footer a{color:var(--navy);font-weight:700;text-decoration:none}
+footer a{display:inline-block;padding:var(--sp-1) 0;color:var(--navy);font-weight:700;text-decoration:none}
+footer a:hover{text-decoration:underline}
 footer .disc{max-width:640px;line-height:1.55}
 
 /* entrada ao rolar. quem esconde e o reveal.js, acrescentando .js-reveal no
    <html> e data-reveal nos elementos. sem JS, nada fica invisivel. */
-.js-reveal [data-reveal]{opacity:0;transform:translateY(34px)}
+.js-reveal [data-reveal]{opacity:0;transform:translateY(20px)}
 .js-reveal [data-reveal].visivel{opacity:1;transform:none;
-  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  transition:opacity .55s var(--ease),transform .55s var(--ease)}
 
 /* sticky mobile bar */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--white);border-top:1px solid var(--line);box-shadow:var(--sh-bar);padding:var(--sp-2) var(--sp-4) calc(var(--sp-2) + env(safe-area-inset-bottom));display:flex;align-items:center;gap:var(--sp-3);transform:translateY(110%);transition:transform var(--t-mid) var(--ease)}
-.sticky.show{transform:none}
+/* escondida, a barra tambem sai do teclado e do leitor de tela (visibility),
+   senao o foco iria parar num botao fora da tela. o visibility so muda depois
+   que a barra terminou de descer */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--white);border-top:1px solid var(--line);box-shadow:var(--sh-bar);padding:var(--sp-2) var(--sp-4) calc(var(--sp-2) + env(safe-area-inset-bottom));display:flex;align-items:center;gap:var(--sp-3);transform:translateY(110%);visibility:hidden;transition:transform var(--t-mid) var(--ease),visibility 0s linear var(--t-mid)}
+.sticky.show{transform:none;visibility:visible;transition:transform var(--t-mid) var(--ease)}
 .sticky .p{line-height:1.15}
 .sticky .p b{font-family:var(--display);font-weight:900;font-style:italic;font-size:20px;color:var(--navy);display:block}
 .sticky .p span{font-size:12px;color:var(--muted)}
-.sticky .cta{min-height:50px;padding:var(--sp-3) var(--sp-4);font-size:13px;flex:1}
-
+.sticky .cta{min-height:50px;padding:var(--sp-3) var(--sp-4);font-size:15px;flex:1}

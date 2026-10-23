@@ -7,12 +7,11 @@
 
   // um grupo por seletor: os irmaos de cada grupo entram escalonados
   var grupos = [
-    '.hero-title', '.hero-video', '.hero-copy',
     '.head', '.center.narrow', '.split > *',
     '.strip li',
     '.questions li',
     '.step',
-    '.group',
+    '.shift li',
     '.who-item',
     '.bonus',
     '.offer-card', '.guarantee',
@@ -25,6 +24,8 @@
     var achados = document.querySelectorAll(sel);
     Array.prototype.forEach.call(achados, function(el, i){
       if(el.hasAttribute('data-reveal')) return;
+      // a primeira tela aparece pronta: animar o hero so atrasa a primeira impressao
+      if(el.closest('.hero')) return;
       el.setAttribute('data-reveal', '');
       // o atraso escalonado so vale entre irmaos do mesmo pai
       var irmaos = Array.prototype.filter.call(achados, function(o){
