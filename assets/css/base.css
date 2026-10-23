@@ -151,7 +151,9 @@ p+p{margin-top:var(--sp-3)}
 /* hero */
 .hero{padding:var(--sp-7) 0 0;background:linear-gradient(180deg,var(--white) 0%,var(--ice) 100%);position:relative;overflow:hidden}
 /* no celular tudo empilha na ordem do HTML: titulo, video, texto, botao */
-.hero-title{margin-bottom:var(--sp-5)}
+.hero-title{margin-bottom:var(--sp-3)}
+/* a frase de apoio continua o titulo, um tom abaixo */
+.hero-sub{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.4;color:var(--muted);text-wrap:balance}
 /* sublinhado de caneta: um traco so, levemente torto, como marcado a mao.
    o clone repete o traco em cada linha quando o trecho quebra */
 .hero-title em{padding-bottom:.08em;background:var(--rabisco) left bottom/100% .32em no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
