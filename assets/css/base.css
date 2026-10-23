@@ -361,11 +361,31 @@ footer a{display:inline-block;padding:var(--sp-1) 0;color:var(--navy);font-weigh
 footer a:hover{text-decoration:underline}
 footer .disc{max-width:640px;line-height:1.55}
 
+/* paginas de texto (privacidade e termos): uma coluna de leitura confortavel */
+.doc{padding:var(--sp-8) 0 var(--sp-9)}
+.doc .wrap{max-width:780px}
+.doc h1{font-size:30px}
+.doc .atualizado{margin-top:var(--sp-2);font-size:14px;color:var(--muted)}
+.doc .resumo{margin-top:var(--sp-6);padding:var(--sp-5);background:var(--ice);border:1px solid var(--line);border-radius:var(--r-md)}
+.doc .resumo p:first-child{margin-top:0}
+.doc h2{font-size:21px;margin-top:var(--sp-8)}
+.doc h2+p,.doc h2+ul{margin-top:var(--sp-3)}
+.doc p,.doc li{font-size:16.5px;line-height:1.7;color:var(--ink)}
+.doc p+p,.doc ul+p,.doc p+ul{margin-top:var(--sp-3)}
+.doc ul{padding-left:1.2em;display:grid;gap:var(--sp-2)}
+.doc li::marker{color:var(--cyan-deep)}
+.doc a{color:var(--cyan-deep);font-weight:700}
+.doc .kicker{font-size:12px;line-height:1.6;color:var(--cyan-deep)}
+.doc b{color:var(--navy)}
+/* campo que o dono do site ainda precisa preencher */
+.pendente{background:#FFF1B8;color:var(--ink);padding:0 4px;border-radius:4px}
+.doc ~ footer{padding-bottom:var(--sp-7)}
+
 /* entrada ao rolar. quem esconde e o reveal.js, acrescentando .js-reveal no
    <html> e data-reveal nos elementos. sem JS, nada fica invisivel. */
-.js-reveal [data-reveal]{opacity:0;transform:translateY(20px)}
+.js-reveal [data-reveal]{opacity:0;transform:translateY(36px)}
 .js-reveal [data-reveal].visivel{opacity:1;transform:none;
-  transition:opacity .55s var(--ease),transform .55s var(--ease)}
+  transition:opacity .8s var(--ease),transform .8s var(--ease)}
 
 /* sticky mobile bar */
 /* escondida, a barra tambem sai do teclado e do leitor de tela (visibility),

@@ -10,11 +10,13 @@
     '.head', '.center.narrow', '.split > *',
     '.strip li',
     '.questions li',
-    '.step',
-    '.shift li',
-    '.who-item',
+    // o carrossel entra inteiro: as etapas 2-4 ficam fora da tela na horizontal
+    // e, observadas uma a uma, so apareceriam no meio do arraste
+    '.carousel',
+    '.shift-head', '.shift li',
+    '.who-item', '.not-for',
     '.bonus',
-    '.offer-card', '.guarantee',
+    '.offer-copy', '.offer-card', '.guarantee',
     '.faq details',
     '.motto', '.cta-block'
   ];
@@ -32,7 +34,7 @@
         return o.parentNode === el.parentNode;
       });
       var pos = irmaos.indexOf(el);
-      if(pos > 0) el.style.transitionDelay = Math.min(pos, 5) * 0.1 + 's';
+      if(pos > 0) el.style.transitionDelay = Math.min(pos, 5) * 0.12 + 's';
       alvos.push(el);
     });
   });
@@ -40,13 +42,28 @@
   if(!alvos.length) return;
   document.documentElement.classList.add('js-reveal');
 
+  // depois de entrar, o elemento volta a ser um elemento comum: sem o atraso
+  // escalonado e sem a transicao de entrada, que senao atrasariam os efeitos
+  // dele mesmo (a borda do FAQ ao abrir, o hover dos cartoes)
+  function solta(el){
+    el.removeAttribute('data-reveal');
+    el.classList.remove('visivel');
+    el.style.transitionDelay = '';
+  }
+  function mostra(el){
+    if(el.classList.contains('visivel')) return;
+    el.classList.add('visivel');
+    var atraso = parseFloat(el.style.transitionDelay) || 0;
+    setTimeout(function(){ solta(el); }, (atraso + 0.9) * 1000);
+  }
+
   var observador = new IntersectionObserver(function(entradas){
     entradas.forEach(function(e){
       if(!e.isIntersecting) return;
-      e.target.classList.add('visivel');
+      mostra(e.target);
       observador.unobserve(e.target);   // acontece uma vez so
     });
-  }, {rootMargin: '0px 0px -8% 0px', threshold: 0.05});
+  }, {rootMargin: '0px 0px -10% 0px', threshold: 0.08});
 
   alvos.forEach(function(el){ observador.observe(el); });
 
@@ -54,7 +71,7 @@
   requestAnimationFrame(function(){
     alvos.forEach(function(el){
       var r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight && r.bottom > 0) el.classList.add('visivel');
+      if(r.top < window.innerHeight && r.bottom > 0){ mostra(el); observador.unobserve(el); }
     });
   });
 })();
