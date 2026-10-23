@@ -61,6 +61,8 @@
   .questions{gap:0 var(--sp-8)}
   .questions li{font-size:16px;padding:var(--sp-4) 0}
   .sign .hand{font-size:38px}
+  /* o botao do convite final acompanha o texto, como nas outras secoes */
+  .final .cta{display:inline-flex}
 
   .steps{gap:var(--sp-4)}
   .step{flex-basis:calc((100% - 2 * var(--sp-4)) / 3);padding:var(--sp-6)}
@@ -69,7 +71,8 @@
   .motto em{display:inline}
 
   /* duas colunas, com os rotulos em cima */
-  .shift-head,.shift li{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-8);align-items:center}
+  /* baseline: a primeira linha do "antes" fica na altura da primeira do "depois" */
+  .shift-head,.shift li{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--sp-8);align-items:baseline}
   .shift-head,.shift{max-width:900px;margin-left:auto;margin-right:auto}
   .shift-head{margin-top:var(--head-gap);padding-bottom:var(--sp-3);font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .shift-head span+span{color:var(--cyan-deep)}

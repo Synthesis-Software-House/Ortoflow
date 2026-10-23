@@ -54,7 +54,12 @@
     if(el.classList.contains('visivel')) return;
     el.classList.add('visivel');
     var atraso = parseFloat(el.style.transitionDelay) || 0;
-    setTimeout(function(){ solta(el); }, (atraso + 0.9) * 1000);
+    // linhas do "antes e depois": o risco vem depois que a linha assentou
+    if(el.matches('.shift li')){
+      el.style.setProperty('--risco-atraso', (atraso + 0.5) + 's');
+      el.classList.add('riscado');
+    }
+    setTimeout(function(){ solta(el); }, (atraso + 1.2) * 1000);
   }
 
   var observador = new IntersectionObserver(function(entradas){

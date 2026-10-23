@@ -232,9 +232,11 @@
       trilho.setPointerCapture(e.pointerId);
       ir(posicao(e));
       function move(ev){ ir(posicao(ev)); acorda(); }
-      function solta(){ trilho.removeEventListener('pointermove', move); trilho.removeEventListener('pointerup', solta); }
+      // pointercancel: o celular pode tomar o gesto (rolagem, chamada) no meio do arraste
+      function solta(){ trilho.removeEventListener('pointermove', move); trilho.removeEventListener('pointerup', solta); trilho.removeEventListener('pointercancel', solta); }
       trilho.addEventListener('pointermove', move);
       trilho.addEventListener('pointerup', solta);
+      trilho.addEventListener('pointercancel', solta);
     });
     trilho.addEventListener('keydown', function(e){
       var passo = {ArrowRight:5, ArrowLeft:-5, ArrowUp:5, ArrowDown:-5}[e.key];

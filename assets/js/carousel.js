@@ -18,6 +18,10 @@
   }
   function paginas(){ return Math.max(1, Math.ceil(itens.length / porVez())); }
   function paginaAtual(){
+    // a ultima pagina pode andar menos que uma tela (4 etapas, 3 por vez no
+    // desktop): encostou no fim da rolagem, e a ultima
+    var fim = trilho.scrollWidth - trilho.clientWidth;
+    if(fim > 0 && trilho.scrollLeft >= fim - 2) return paginas() - 1;
     var p = trilho.scrollLeft / Math.max(1, trilho.clientWidth);
     return Math.min(paginas() - 1, Math.max(0, Math.round(p)));
   }
