@@ -60,7 +60,6 @@
 
   /* ---- movimento ---- */
   --ease:cubic-bezier(.2,.7,.3,1);
-  --ease-entrada:cubic-bezier(.16,1,.3,1);   /* desacelera longo: entrada ao rolar */
   --t-fast:.15s;
   --t-mid:.25s;
 
@@ -402,19 +401,9 @@ footer .disc{max-width:640px;line-height:1.55}
 
 /* entrada ao rolar. quem esconde e o reveal.js, acrescentando .js-reveal no
    <html> e data-reveal nos elementos. sem JS, nada fica invisivel. */
-/* sobe um pouco e sai de um leve desfoque, como uma foto entrando em foco */
-.js-reveal [data-reveal]{opacity:0;transform:translateY(28px);filter:blur(5px)}
-.js-reveal [data-reveal].visivel{opacity:1;transform:none;filter:none;
-  transition:opacity .9s var(--ease-entrada),transform 1s var(--ease-entrada),filter .7s var(--ease-entrada)}
-/* as fotos entram do jeito delas: o arco cresce da base e a Dra. Valeria sobe
-   de dentro dele. o recorte do .arch corta a foto embaixo, entao ela "emerge" */
-.js-reveal .arch[data-reveal]{opacity:1;transform:none;filter:none}
-.js-reveal .arch[data-reveal]::before{transform:scaleY(.82);transform-origin:bottom;opacity:0}
-.js-reveal .arch[data-reveal] img{translate:0 14%;opacity:0}
-.js-reveal .arch[data-reveal].visivel::before{transform:none;opacity:1;
-  transition:transform .8s var(--ease-entrada),opacity .5s var(--ease-entrada)}
-.js-reveal .arch[data-reveal].visivel img{translate:0 0;opacity:1;
-  transition:translate 1s var(--ease-entrada) .12s,opacity .6s var(--ease-entrada) .12s}
+.js-reveal [data-reveal]{opacity:0;transform:translateY(36px)}
+.js-reveal [data-reveal].visivel{opacity:1;transform:none;
+  transition:opacity .8s var(--ease),transform .8s var(--ease)}
 
 /* sticky mobile bar */
 /* escondida, a barra tambem sai do teclado e do leitor de tela (visibility),

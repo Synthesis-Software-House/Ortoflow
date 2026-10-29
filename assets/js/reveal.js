@@ -59,7 +59,7 @@
       el.style.setProperty('--risco-atraso', (atraso + 0.5) + 's');
       el.classList.add('riscado');
     }
-    setTimeout(function(){ solta(el); }, (atraso + 1.2) * 1000);
+    setTimeout(function(){ solta(el); }, (atraso + 0.9) * 1000);
   }
 
   var observador = new IntersectionObserver(function(entradas){
